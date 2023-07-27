@@ -1,0 +1,78 @@
+/* Styles pour le titre de la page */
+.title-page {
+  text-align: center;
+  text-decoration: underline;
+  margin: 20px 0;
+}
+/* Styles pour le formulaire */
+form {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr;
+  /* Une seule colonne */
+  gap: 10px;
+  /* Espacement entre les éléments */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+input,
+textarea {
+  width: 100%;
+  margin: 11px;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+}
+.box {
+  display: flex;
+  align-items: center;
+}
+.box label {
+  width: 100px;
+}
+.btn {
+  width: 60%;
+  height: 20px;
+  margin: 10px auto;
+  /* Centre le bouton horizontalement */
+}
+@media screen and (min-width: 321px) {
+  .card {
+    width: 10.5rem;
+  }
+  .card-title {
+    font-size: 9px;
+  }
+  .card-text {
+    font-size: 7px;
+  }
+  .title-type-service {
+    font-size: 13px;
+  }
+  .btn {
+    margin: 10px 110px 0px 110px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  p {
+    font-size: 14px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .btn {
+    width: 50%;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .btn {
+    width: 30%;
+  }
+}
+@media screen and (min-width: 1441px) {
+  .btn {
+    width: 25%;
+  }
+}

@@ -1,0 +1,202 @@
+/* Styles globaux */
+* {
+  font-family: "Roboto Mono", monospace;
+  box-sizing: inherit;
+}
+/* Styles pour le corps de la page */
+html {
+  width: 100%;
+  height: 100vh;
+  font-size: 9px;
+  padding: 0;
+  margin: 0;
+}
+/* Styles pour l'en-tête */
+.container-head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}
+.img-logo {
+  width: 30%;
+}
+/* Styles pour la barre de navigation */
+.navigation {
+  padding: 10px;
+}
+.nav {
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.barre {
+  border-top: 1px solid black;
+  margin: 10px 10px 0 10px;
+}
+/* Styles pour les horaires d'ouverture et l'adresse */
+footer {
+  display: flex;
+  justify-content: space-around;
+  font-size: 7px;
+  text-align: center;
+}
+.title-adress {
+  margin-bottom: 10px;
+}
+.horaires,
+.adresse {
+  font-size: 6px;
+}
+.adresse {
+  margin-bottom: 2px;
+}
+/* Styles pour les icônes sociales */
+.social {
+  font-size: 16px;
+  margin-top: 15px;
+  text-decoration: none;
+}
+.fa {
+  text-decoration: none;
+}
+.fa-instagram {
+  color: #e4405f;
+}
+.fa-whatsapp {
+  color: #25d366;
+}
+.fa-twitter {
+  color: #1da1f2;
+}
+.fa-facebook {
+  color: #1877f2;
+}
+/* Styles pour les sections du footer */
+.adresse-maps,
+.horaires-footer,
+.social-logo {
+  flex: 1;
+  padding: 10px 10px 0px 10px;
+}
+.copyright {
+  text-align: center;
+  font-size: 6px;
+  border: 1px solid black;
+}
+@media screen and (min-width: 321px) {
+  html {
+    font-size: 11px;
+  }
+  .adresse,
+  .horaires {
+    font-size: 7px;
+  }
+  .itineraire {
+    font-size: 7px;
+  }
+  .social {
+    font-size: 20px;
+  }
+  .copyright {
+    font-size: 7px;
+  }
+}
+@media screen and (min-width: 321.1px) {
+  html {
+    font-size: 9px;
+  }
+  .social {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 342px) {
+  html {
+    font-size: 10px;
+  }
+  .social {
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 425px) {
+  html {
+    font-size: 12px;
+  }
+  .adresse,
+  .horaires {
+    font-size: 10px;
+  }
+  .itineraire {
+    font-size: 10px;
+  }
+  .social {
+    font-size: 24px;
+  }
+  .copyright {
+    font-size: 8px;
+  }
+}
+@media screen and (min-width: 768px) {
+  html {
+    font-size: 12px;
+  }
+  .social {
+    font-size: 34px;
+  }
+  .copyright {
+    font-size: 10px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  html {
+    font-size: 16px;
+  }
+  .adresse,
+  .horaires {
+    font-size: 12px;
+  }
+  .itineraire {
+    font-size: 12px;
+  }
+  .social {
+    font-size: 36px;
+  }
+  .copyright {
+    font-size: 12px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  html {
+    font-size: 16px;
+  }
+  .adresse,
+  .horaires {
+    font-size: 16px;
+  }
+  .itineraire {
+    font-size: 16px;
+  }
+  .social {
+    font-size: 40px;
+  }
+  .copyright {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 1441px) {
+  html {
+    font-size: 16px;
+  }
+  .adresse,
+  .horaires {
+    font-size: 16px;
+  }
+  .itineraire {
+    font-size: 16px;
+  }
+  .copyright {
+    font-size: 16px;
+  }
+}

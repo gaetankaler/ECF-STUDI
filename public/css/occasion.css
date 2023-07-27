@@ -1,0 +1,87 @@
+/* Styles pour le titre de la page */
+.title-page {
+  text-align: center;
+  text-decoration: underline;
+  margin: 20px 0 40px 0;
+}
+
+/* Styles pour les cartes */
+.all-card {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.card {
+  width: 30%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+div.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.price {
+  text-align: center;
+  font-size: 9px;
+  font-weight: 700;
+}
+.btn {
+  font-size: 6px;
+}
+h4 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+.card-img-top {
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+@media screen and (min-width: 321px) {
+  .price {
+    font-size: 11px;
+  }
+  .btn {
+    font-size: 8px;
+  }
+  h4 {
+    font-size: 12px;
+  }
+}
+@media screen and (min-width: 321.1px) {
+  .price {
+    font-size: 10px;
+  }
+  .btn {
+    font-size: 7px;
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .price {
+    font-size: 13px;
+  }
+  .btn {
+    font-size: 9px;
+  }
+  h4 {
+    font-size: 14px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .price {
+    font-size: 18px;
+  }
+  .btn {
+    font-size: 16px;
+  }
+  h4 {
+    font-size: 20px;
+  }
+  p {
+    font-size: 14px;
+  }
+}

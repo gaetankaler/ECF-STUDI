@@ -1,0 +1,94 @@
+/* Styles pour le titre de la page */
+.title-page {
+  text-align: center;
+  text-decoration: underline;
+  margin: 20px 0;
+}
+/* Styles pour les images */
+h3 {
+  text-align: center;
+  margin-left: 10px;
+  font-weight: 500;
+}
+.img {
+  width: 80%;
+  border-radius: 5px;
+  margin: 0 10px 10px 10px;
+}
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.box p {
+  margin: 0 10px 10px 10px;
+  text-align: center;
+  display: flex;
+}
+@media screen and (min-width: 321px) {
+  .card {
+    width: 10.5rem;
+  }
+  .card-title {
+    font-size: 9px;
+  }
+  .card-text {
+    font-size: 7px;
+  }
+  .title-type-service {
+    font-size: 13px;
+  }
+  .btn {
+    margin: 10px 110px 0px 110px;
+  }
+}
+@media screen and (min-width: 768px) {
+  p {
+    font-size: 14px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  p {
+    font-size: 12px;
+  }
+  div.box.mecanique {
+    flex-direction: row-reverse;
+  }
+  .description-carrosserie,
+  .description-entretien {
+    text-align: right;
+  }
+  .description-mecanique {
+    text-align: left;
+  }
+  .img {
+    width: 50%;
+    border-radius: 5px;
+    margin: 0 10px 10px 10px;
+  }
+  .box {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .description-carrosserie,
+  .description-entretien {
+    text-align: right;
+  }
+  .description-mecanique {
+    text-align: left;
+  }
+  p {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 1441px) {
+  .description-carrosserie,
+  .description-entretien {
+    text-align: right;
+  }
+  .description-mecanique {
+    text-align: left;
+  }
+}

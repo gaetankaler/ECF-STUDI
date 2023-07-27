@@ -1,0 +1,75 @@
+{% extends "base.html.twig" %} {% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('css/service.css') }}" />
+{% endblock %} {% block body %}
+<main>
+  <section class="services">
+    <div class="container-main">
+      <h2 class="title-page">Nos services</h2>
+      <h3>Carrosserie</h3>
+      <div class="box carrosserie">
+        <img
+          class="img carrosserie"
+          src="./image/carrosserie.jpeg"
+          alt="photos qui montre la carrosserie d'un vehicule"
+        />
+        <p class="description-carrosserie">
+          Des services de réparation et de restauration pour redonner à votre
+          véhicule son aspect d'origine. Que ce soit pour des petites éraflures,
+          des bosses ou des dégâts plus importants suite à un accident, nos
+          experts qualifiés utilisent des techniques de pointe et des matériaux
+          de haute qualité pour effectuer des réparations précises et durables.
+          Nous prenons soin de chaque détail pour garantir un résultat
+          impeccable et vous offrir une carrosserie comme neuve. Vous pouvez
+          compter sur notre savoir-faire et notre dévouement pour remettre votre
+          véhicule en parfait état, tout en vous assurant une satisfaction
+          totale.
+        </p>
+      </div>
+      <div class="barre"></div>
+      <h3>Mécanique</h3>
+      <div class="box mecanique">
+        <img
+          class="img mecanique"
+          src="./image/mecanique.jpg"
+          alt="photos qui montre un véhicule avec le capot ouvert pour travaillez sur la mécanique d'un vehicule"
+        />
+        <p class="description-mecanique">
+          Une gamme complète de services pour prendre soin de votre véhicule et
+          garantir son bon fonctionnement. Nos mécaniciens expérimentés et
+          compétents sont équipés des derniers outils et technologies pour
+          diagnostiquer, réparer et entretenir tous types de véhicules. Que ce
+          soit pour des réparations de moteur, des entretiens périodiques, des
+          changements de courroie, ou des vérifications de système électrique,
+          nous mettons tout en œuvre pour assurer la performance, la sécurité et
+          la longévité de votre voiture. Faites confiance à notre équipe pour un
+          service fiable, transparent et de qualité supérieure afin de rouler en
+          toute sérénité.
+        </p>
+      </div>
+      <div class="barre"></div>
+      <h3>Entretien</h3>
+      <div class="box entretien">
+        <img
+          class="img entretien"
+          src="./image/entretien.webp"
+          alt="photos qui montre une remise à niveau d'huile moteur"
+        />
+        <p class="description-entretien">
+          Un service d'entretien automobile complet et efficace pour préserver
+          la santé et les performances de votre véhicule. Nos techniciens
+          qualifiés et expérimentés effectuent des vidanges régulières,
+          vérifient les niveaux de liquides, inspectent les freins, les
+          suspensions et les systèmes essentiels. Nous accordons une attention
+          particulière à la qualité de l'huile et des filtres utilisés pour
+          garantir une maintenance optimale. Grâce à nos équipements de pointe,
+          nous réalisons des diagnostics précis pour détecter toute anomalie.
+          Nous vous assurons des services transparents, des délais respectés et
+          des tarifs compétitifs. Faites-nous confiance pour entretenir votre
+          véhicule en toute tranquillité.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}

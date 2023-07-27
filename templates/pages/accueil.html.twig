@@ -1,0 +1,71 @@
+{% extends "base.html.twig" %} {% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('css/accueil.css') }}" />
+{% endblock %} {% block body %}
+<main>
+  <section class="presentation-garage">
+    <div class="container-main">
+      <h2 class="title-page">Présentation du garage</h2>
+      <div class="intro">
+        Un garage passionné offrant des services automobiles complets. Des
+        experts dévoués prennent soin de votre véhicule avec précision et
+        professionnalisme. Réparations, entretien, diagnostics et plus encore.
+        Faites confiance à V.PARROT pour des performances optimales et une
+        expérience client exceptionnelle.
+      </div>
+      <div class="type-img">
+        <div class="service-type">
+          <h3 class="title-type-service">Type de services</h3>
+          <ul class="type">
+            <li>Carrosserie</li>
+            <li>Mécanique</li>
+            <li>Entretien</li>
+          </ul>
+        </div>
+        <img
+          src="./image/garage.jpg"
+          alt="photos du garage"
+          class="img-garage"
+        />
+      </div>
+    </div>
+  </section>
+  <section class="avis-clients">
+    <h2 class="title-avis">Avis clients</h2>
+    <div class="card-avis-client">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Billy Jantes</h5>
+          <p class="note">⭐⭐⭐⭐⭐</p>
+          <p class="card-text">
+            "Le garage V.PARROT est un véritable nid de compétences et de
+            professionnalisme automobile !"
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Freddy Piston</h5>
+          <p class="note">⭐⭐⭐⭐⭐</p>
+          <p class="card-text">
+            "V.PARROT est un garage où l'on trouve un service client impeccable
+            et des réparations de qualité. Je recommande vivement !"
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Bobby Pare-Choc</h5>
+          <p class="note">⭐⭐⭐⭐⭐</p>
+          <p class="card-text">
+            "J'ai été agréablement surpris par les tarifs compétitifs et la
+            rapidité d'intervention chez V.PARROT. Un garage fiable et efficace
+            !"
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary">Tous les avis</button>
+  </section>
+</main>
+{% endblock %}

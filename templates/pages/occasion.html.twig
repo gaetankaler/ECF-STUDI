@@ -1,0 +1,179 @@
+{% extends "base.html.twig" %} {% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('css/occasion.css') }}" />
+{% endblock %} {% block body %}
+<main>
+  <section class="services">
+    <div class="container-main">
+      <h2 class="title-page">Véhicule d'occasion</h2>
+      <div class="all-card">
+        <div class="card">
+          <img
+            src="{{ asset('image/audi.jpg') }}"
+            class="card-img-top"
+            alt="photos d'une audi A3 noir d'occasion"
+          />
+          <div class="card-body">
+            <h4 class="card-title">{{ voiture.title }}</h4>
+            <ul>
+              <li>Année {{ voiture.annee }}</li>
+              <li>{{ voiture.kilometrage }} km</li>
+            </ul>
+            <div class="barre"></div>
+            <p class="price">prix {{ voiture.formatPrix }}</p>
+            <a
+              href="{{ path('detail', { id: voiture.id }) }}"
+              class="btn btn-primary"
+              >Plus de détails</a
+            >
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="{{ asset('image/defender.jpg') }}"
+            class="card-img-top"
+            alt="photos d'un 4x4 jeep defender noir d'occasion"
+          />
+          <div class="card-body">
+            <h4 class="card-title">Jeep Defender</h4>
+            <ul>
+              <li>Année 2019</li>
+              <li>98543 klm</li>
+              <li>130cv</li>
+            </ul>
+            <div class="barre"></div>
+            <p class="price">prix : 8800€</p>
+            <a href="#" class="btn btn-primary">Plus de détails</a>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="{{ asset('image/golf.jpg') }}"
+            class="card-img-top"
+            alt="photos d'une volkswagen golf noir d'occasion"
+          />
+          <div class="card-body">
+            <h4 class="card-title">Volkswagen Golf</h4>
+            <ul>
+              <li>Année 2023</li>
+              <li>34897 klm</li>
+              <li>270cv</li>
+            </ul>
+            <div class="barre"></div>
+            <p class="price">prix : 14500€</p>
+            <a href="#" class="btn btn-primary">Plus de détails</a>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="{{ asset('image/toyota1.jpg') }}"
+            class="card-img-top"
+            alt="photos d'une toyota gr86 blanche d'occasion"
+          />
+          <div class="card-body">
+            <h4 class="card-title">Toyota GR86</h4>
+            <ul>
+              <li>Année 2022</li>
+              <li>15300 klm</li>
+              <li>190cv</li>
+            </ul>
+            <div class="barre"></div>
+            <p class="price">prix : 24500€</p>
+            <a href="#" class="btn btn-primary">Plus de détails</a>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="{{ asset('image/new-beetle.jpg') }}"
+            class="card-img-top"
+            alt="photos d'une volkswagen new beetle jaune d'occasion "
+          />
+          <div class="card-body">
+            <h4 class="card-title">Volkswagen New Beetle</h4>
+            <ul>
+              <li>Année 2016</li>
+              <li>147000 klm</li>
+              <li>90cv</li>
+            </ul>
+            <div class="barre"></div>
+            <p class="price">prix : 3500€</p>
+            <a href="#" class="btn btn-primary">Plus de détails</a>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="{{ asset('image/toyota.jpg') }}"
+            class="card-img-top"
+            alt="photos d'une toyota rav4 gris d'occasion"
+          />
+          <div class="card-body">
+            <h4 class="card-title">Toyota Rav4</h4>
+            <ul>
+              <li>Année 2018</li>
+              <li>124500 klm</li>
+              <li>110cv</li>
+            </ul>
+            <div class="barre"></div>
+            <p class="price">prix : 5900€</p>
+            <a href="#" class="btn btn-primary">Plus de détails</a>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="{{ asset('image/jeep.jpg') }}"
+            class="card-img-top"
+            alt="photos d'une jeep defender blanc d'occasion"
+          />
+          <div class="card-body">
+            <h4 class="card-title">Jeep Defender</h4>
+            <ul>
+              <li>Année 2021</li>
+              <li>236782 klm</li>
+              <li>140cv</li>
+            </ul>
+            <div class="barre"></div>
+            <p class="price">prix : 7600€</p>
+            <a href="#" class="btn btn-primary">Plus de détails</a>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="{{ asset('image/van.jpg') }}"
+            class="card-img-top"
+            alt="photos d'une volkswagen combi blanc d'occasion"
+          />
+          <div class="card-body">
+            <h4 class="card-title">Volkswagen Combi</h4>
+            <ul>
+              <li>Année 2005</li>
+              <li>323678 klm</li>
+              <li>70cv</li>
+            </ul>
+            <div class="barre"></div>
+            <p class="price">prix : 7500€</p>
+            <a href="#" class="btn btn-primary">Plus de détails</a>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="{{ asset('image/twingo.jpg') }}"
+            class="card-img-top"
+            alt="photos d'une renault twingo orange d'occasion"
+          />
+          <div class="card-body">
+            <h4 class="card-title">Renault Twingo</h4>
+            <ul>
+              <li>Année 2017</li>
+              <li>178678 klm</li>
+              <li>70cv</li>
+            </ul>
+            <div class="barre"></div>
+            <p class="price">prix : 3500€</p>
+            <a href="#" class="btn btn-primary">Plus de détails</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}
