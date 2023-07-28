@@ -18,8 +18,9 @@ class OccasionController
         $this->twig = $twig;
         $this->entityManager = $entityManager;
     }  
-
-    #[Route("/occasion")]
+    /**
+     * @Route("/occasion")
+     */
     public function index(): Response
     {
         // Récupérer une voiture par son ID (exemple avec l'ID 1)
@@ -35,8 +36,9 @@ class OccasionController
             'voiture' => $voiture,
         ]));
     }
-
-    #[Route("/detail/{id}", name: "detail")]
+    /**
+     * @Route("/detail/{id}", name="detail")
+     */
     public function details(int $id): Response
     {
         // Récupérer la voiture par son ID

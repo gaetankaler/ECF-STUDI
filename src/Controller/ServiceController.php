@@ -16,8 +16,9 @@ class ServiceController
     {
         $this->twig = $twig;
     } 
-
-    #[Route("/service")] // Assurez-vous que l'annotation Route est correcte
+    /**
+     * @Route("/service")
+     */
     public function index(): Response
     {
         return new Response($this->twig->render("pages/service.html.twig"));

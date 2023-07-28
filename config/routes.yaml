@@ -13,3 +13,16 @@ contact:
 detail:
   path: "/detail/{id}"
   controller: 'App\Controller\OccasionController::details'
+index:
+  path: "/admin/voitures/index"
+  controller: 'App\Controller\Admin\AdminVoitureController::index'
+edit:
+  path: "/admin/voitures/edit/{id}"
+  controller: 'App\Controller\Admin\AdminVoitureController::edit'
+new:
+  path: "/admin/voitures/new"
+  controller: 'App\Controller\Admin\AdminVoitureController::new'
+supprimer:
+  path: "/supprimer/{id}"
+  controller: 'App\Controller\Admin\AdminVoitureController::supprimer'
+  methods: [DELETE]

@@ -16,7 +16,9 @@ class AccueilController
   {
     $this->twig = $twig;
   } 
-#[Route("/acceuil")] // Assurez-vous que l'annotation Route est correcte
+  /**
+  * @Route("/accueil")
+  */
     public function index(): Response
   {
     return new Response($this->twig->render("pages/accueil.html.twig"));

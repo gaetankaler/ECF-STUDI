@@ -16,8 +16,9 @@ class ContactController
     {
         $this->twig = $twig;
     } 
-
-    #[Route("/contact")] // Assurez-vous que l'annotation Route est correcte
+    /**
+     * @Route("/contact")
+     */
     public function index(): Response
     {
         return new Response($this->twig->render("pages/contact.html.twig"));

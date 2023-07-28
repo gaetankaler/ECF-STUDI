@@ -6,10 +6,28 @@ use Cocur\Slugify\Slugify;
 use App\Repository\VoitureRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: VoitureRepository::class)]
+
 class Voiture
 {
+
+    const MOTORISATION = [
+        0 => "Diesel",
+        1 => "Essence",
+        2 => "Electique"
+    ];
+    const GPS = [
+        0 => "Oui",
+        1 => "Non"
+    ];
+    const CAMERA = [
+        0 => "Oui",
+        1 => "Non"
+    ];
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -23,24 +41,30 @@ class Voiture
 
 
     #[ORM\Column]
+    #[Assert\Range(min:1900, max:2023)]
     private ?int $annee;
 
     #[ORM\Column]
+    #[Assert\Range(min:1, max:9999999)]
     private ?int $kilometrage;
 
     #[ORM\Column]
+    #[Assert\Range(min:50, max:1000)]
     private ?int $chevaux;
 
     #[ORM\Column]
+    #[Assert\Range(min:1, max:9999999)]
     private ?int $prix;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $detail = null;
 
     #[ORM\Column]
+    #[Assert\Range(min:3, max:5)]
+
     private ?int $porte = null;
 
     #[ORM\Column(length: 255)]
@@ -53,6 +77,7 @@ class Voiture
     private ?string $camera = null;
 
     public function __construct() {
+        $this->id = null;
         $this->date = new \DateTime();
     }
     public function getId(): ?int
@@ -176,36 +201,36 @@ class Voiture
         return $this;
     }
 
-    public function getMotorisation(): ?string
+    public function getMotorisation(): ?int
     {
         return $this->motorisation;
     }
 
-    public function setMotorisation(string $motorisation): static
+    public function setMotorisation(int $motorisation): static
     {
         $this->motorisation = $motorisation;
 
         return $this;
     }
 
-    public function getGps(): ?string
+    public function getGps(): ?int
     {
         return $this->gps;
     }
 
-    public function setGps(string $gps): static
+    public function setGps(int $gps): static
     {
         $this->gps = $gps;
 
         return $this;
     }
 
-    public function getCamera(): ?string
+    public function getCamera(): ?int
     {
         return $this->camera;
     }
 
-    public function setCamera(string $camera): static
+    public function setCamera(int $camera): static
     {
         $this->camera = $camera;
 
