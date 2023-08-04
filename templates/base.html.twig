@@ -56,14 +56,19 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ path("contact")}}">Contact</a>
         </li>
-      </ul>
+
+      {% if app.user %}
+        <li class="nav-item">
+          <a class="nav-link" style="color:#fff; background-color:#0d6efd;border-radius: 5px;" href="{{ path("logout") }}">Se déconnecter</a>
+        </li>
+      {% endif %}      </ul>
     </div>
     {% block body %}{% endblock %} {# footer #}
     <div class="barre"></div>
     <footer>
       <div class="adresse-maps">
         <h6 class="title-adress"><b>Notre adresse</b></h6>
-        <p class="adresse">1 Avenue des lauriers<br />64000 Pau</p>
+        <p class="adresse">1 Avenue des lauriers<br />31000 Toulouse</p>
         <a href="#" class="itineraire">itinéraire</a>
       </div>
       <div class="social-logo">
