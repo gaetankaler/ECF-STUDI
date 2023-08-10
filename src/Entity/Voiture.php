@@ -76,6 +76,9 @@ class Voiture
     #[ORM\Column(length: 255)]
     private ?string $camera = null;
 
+    #[ORM\Column(type:"boolean")]
+    private $visible = false;
+
     public function __construct() {
         $this->id = null;
         $this->date = new \DateTime();
@@ -201,38 +204,49 @@ class Voiture
         return $this;
     }
 
-    public function getMotorisation(): ?int
-    {
-        return $this->motorisation;
-    }
+public function getMotorisation(): ?string
+{
+    return $this->motorisation;
+}
 
-    public function setMotorisation(int $motorisation): static
-    {
-        $this->motorisation = $motorisation;
+public function setMotorisation(?string $motorisation): self
+{
+    $this->motorisation = $motorisation;
 
-        return $this;
-    }
+    return $this;
+}
 
-    public function getGps(): ?int
+    public function getGps(): ?string
     {
         return $this->gps;
     }
 
-    public function setGps(int $gps): static
+    public function setGps(string $gps): self
     {
         $this->gps = $gps;
 
         return $this;
     }
 
-    public function getCamera(): ?int
+    public function getCamera(): ?string
     {
         return $this->camera;
     }
 
-    public function setCamera(int $camera): static
+    public function setCamera(string $camera): self
     {
         $this->camera = $camera;
+
+        return $this;
+    }
+public function isVisible(): bool
+    {
+        return $this->visible;
+    }
+
+    public function setVisible(bool $visible): self
+    {
+        $this->visible = $visible;
 
         return $this;
     }

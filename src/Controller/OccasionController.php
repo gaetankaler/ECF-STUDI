@@ -7,49 +7,77 @@ use App\Entity\Voiture;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
+use App\Repository\VoitureRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Knp\Component\Pager\PaginatorInterface;
 
-class OccasionController
+class OccasionController extends AbstractController
 {
     private $twig;
     private $entityManager;
+    private $voitureRepository;
 
-    public function __construct(Environment $twig, EntityManagerInterface $entityManager)
+    public function __construct(Environment $twig, EntityManagerInterface $entityManager, VoitureRepository $voitureRepository)
     {
         $this->twig = $twig;
         $this->entityManager = $entityManager;
-    }  
+        $this->voitureRepository = $voitureRepository;
+    }
+
     /**
      * @Route("/occasion")
      */
-    public function index(): Response
-    {
-        // Récupérer une voiture par son ID (exemple avec l'ID 1)
-        $voiture = $this->entityManager->getRepository(Voiture::class)->find(1);
+public function index(PaginatorInterface $paginator, Request $request): Response
+{
+    $voitures = $paginator->paginate(
+        $this->voitureRepository->findAllVisibleQuery(),
+        $request->query->getInt('page', 1),
+        9
+    );
 
-        // Vérifier si la voiture existe
-        if (!$voiture) {
-            throw new NotFoundHttpException('Voiture non trouvée.');
+    // Vérifier si au moins une voiture existe
+    if ($voitures->count() === 0) {
+        throw new NotFoundHttpException('Aucune voiture trouvée.');
+    }
+
+    return $this->render("pages/occasion.html.twig", [
+        "current_menu" => "voitures",
+        "voitures" => $voitures,
+    ]);
+}
+
+    /**
+     * @Route("/Occasion/{slug}-{id}", name="voiture.show", requirements={"slug": "[a-z0-9\-]*"})
+     * @param Voiture $voiture
+     * @return Response
+     */
+    public function show(Voiture $voiture, string $slug): Response
+    {
+        if ($voiture->getSlug() !==$slug) {
+            return $this->redirectToRoute("voiture.show", [
+                "id" => $voiture->getId(),
+                "slug" => $voiture->getSlug(),
+            ], 301);
         }
 
-        // Passer la variable $voiture au template Twig pour l'affichage
-        return new Response($this->twig->render("pages/occasion.html.twig", [
-            'voiture' => $voiture,
-        ]));
+        return $this->render("voiture.show", [
+            "voiture" => $voiture,
+            "current_menu" => "voitures",
+        ]);
     }
+
     /**
      * @Route("/detail/{id}", name="detail")
      */
     public function details(int $id): Response
     {
-        // Récupérer la voiture par son ID
         $voiture = $this->entityManager->getRepository(Voiture::class)->find($id);
 
-        // Vérifier si la voiture existe
         if (!$voiture) {
             throw new NotFoundHttpException('Voiture non trouvée.');
         }
 
-        // Passer la variable $voiture au template Twig pour l'affichage des détails
         return new Response($this->twig->render("pages/details.html.twig", [
             'voiture' => $voiture,
         ]));
