@@ -1,9 +1,11 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\RechercheVoiture;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Voiture;
+use App\Form\RechercheVoitureType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
@@ -30,8 +32,13 @@ class OccasionController extends AbstractController
      */
 public function index(PaginatorInterface $paginator, Request $request): Response
 {
+
+    $recherche = new RechercheVoiture();
+    $form = $this->createForm(RechercheVoitureType::class, $recherche);
+    $form->handleRequest($request);
+
     $voitures = $paginator->paginate(
-        $this->voitureRepository->findAllVisibleQuery(),
+        $this->voitureRepository->findAllVisibleQuery($recherche),
         $request->query->getInt('page', 1),
         9
     );
@@ -44,6 +51,7 @@ public function index(PaginatorInterface $paginator, Request $request): Response
     return $this->render("pages/occasion.html.twig", [
         "current_menu" => "voitures",
         "voitures" => $voitures,
+        "form" => $form->createView()
     ]);
 }
 
