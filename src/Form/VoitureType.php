@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class VoitureType extends AbstractType
 {
@@ -19,23 +20,32 @@ class VoitureType extends AbstractType
             ->add('kilometrage', null, ["label" => "Kilomètres"])
             ->add('chevaux', null, ["label" => "Chevaux"])
             ->add('prix')
-            ->add('porte', null, ["label" => "Nombre de portes"])
+            ->add("imageFile", FileType::class, [
+                "required" => false
+            ])
+            ->add('porte', ChoiceType::class, [
+                'label' => 'Nombre de portes',
+                'choices' => [
+                    3 => "0",
+                    5 => "1",
+                ],
+            ])
             ->add('motorisation', ChoiceType::class, [
                 'label' => 'Motorisation',
-                'choices' => $this->getMotorisationChoices(),
+                'choices' => array_flip($this->getMotorisationChoices()),
             ])
             ->add('gps', ChoiceType::class, [
                 'label' => 'GPS',
                 'choices' => [
-                    'Oui' => 0,
-                    'Non' => 1,
+                    'Oui' => "Oui",
+                    'Non' => "Non",
                 ],
             ])
             ->add('camera', ChoiceType::class, [
                 'label' => 'Caméra',
                 'choices' => [
-                    'Oui' => 0,
-                    'Non' => 1,
+                    'Oui' => "Oui",
+                    'Non' => "Non",
                 ],
             ])
         ;

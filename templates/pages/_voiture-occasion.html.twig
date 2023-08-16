@@ -1,4 +1,9 @@
-    <div class="card mb-4">
+    <div class="card mb-4" style="border-radius: 10px;">
+        {% if voiture.filename %}
+        <img src="{{ vich_uploader_asset(voiture, "imageFile") | imagine_filter("thumb") }}" alt="card-img-top" style="width: 100%; height: auto;border-radius: 10px 10px 0 0;" >
+        {% else %}
+        <img src="{{ "/images/voitures/vide.jpg" | imagine_filter("thumb") }}" alt="card-img-top" style="width: 100%; height: auto;border-radius: 10px 10px 0 0;" >
+        {% endif %}
         <div class="card-body">
             <h5 class="card-title">
                 <a href="{{ path("detail", {id: voiture.id}) }}">

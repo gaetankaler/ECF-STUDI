@@ -14,6 +14,11 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8">
+        {% if voiture.filename %}
+        <img src="{{ vich_uploader_asset(voiture, "imageFile") | imagine_filter("medium") }}" alt="card-img-top" style="width: 100%; height: auto;border-radius: 10px 10px 0 0;" >
+        {% else %}
+        <img src="{{ "/images/voitures/vide.jpg" | imagine_filter("medium") }}" alt="card-img-top" style="width: 100%; height: auto;border-radius: 10px 10px 0 0;" >
+        {% endif %}
   </div>
   <div class="col-md-4">
     <h1>{{ voiture.title }}</h1>

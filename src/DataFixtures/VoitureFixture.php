@@ -6,6 +6,7 @@ use App\Entity\Voiture;
 use Faker\Factory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+
 class VoitureFixture extends Fixture
 {
     public function load(ObjectManager $manager): void
@@ -19,11 +20,12 @@ class VoitureFixture extends Fixture
                 $voiture->setKilometrage($faker->numberBetween(1,999999));
                 $voiture->setChevaux($faker->numberBetween(50,1000));
                 $voiture->setPrix($faker->numberBetween(1,40000));
-                $voiture->setPorte($faker->numberBetween(3,5));
+                $voiture->setPorte($faker->randomElement(Voiture::PORTE));
                 $voiture->setMotorisation($faker->randomElement(Voiture::MOTORISATION));
                 $voiture->setGps($faker->randomElement(Voiture::GPS));
                 $voiture->setCamera($faker->randomElement(Voiture::CAMERA));
                 $voiture->setVisible(true);
+                $voiture->setFilename("vide.jpg");
             $manager->persist($voiture);
         }
         $manager->flush();

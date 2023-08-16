@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
-class RechercheVoiture {
+use Symfony\Component\Form\AbstractType;
+
+class RechercheVoiture extends AbstractType
+{
 
     /**
      * @var int|null
@@ -77,5 +80,12 @@ class RechercheVoiture {
     {
         $this->kilometreMax = $kilometreMax;
         return $this;
+    }
+        /**
+     * @return string
+     */
+        public function getBlockPrefix(): string
+    {
+        return '';
     }
 }

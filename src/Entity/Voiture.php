@@ -3,21 +3,26 @@
 namespace App\Entity;
 
 use Cocur\Slugify\Slugify;
-use App\Repository\VoitureRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-
-#[ORM\Entity(repositoryClass: VoitureRepository::class)]
-
+#[Vich\Uploadable]
+#[ORM\Entity(repositoryClass:"App\Repository\VoitureRepository")]
 class Voiture
 {
 
     const MOTORISATION = [
-        0 => "Diesel",
-        1 => "Essence",
-        2 => "Electique"
+        "Diesel" => "Diesel",
+        "Essence" => "Essence",
+        "Electique" => "Electique"
+    ];
+    const PORTE = [
+        0 => "3",
+        1 => "5"
     ];
     const GPS = [
         0 => "Oui",
@@ -33,12 +38,26 @@ class Voiture
     #[ORM\Column]
     private ?int $id;
 
+    /**
+     * @var string|null
+     */
+    #[ORM\Column(type: "string", length: 255, nullable: true)]
+    private $filename;
+
+    /**
+     * @var File|null
+     * @Assert\Image(
+     * mimeTypes="image/jpeg"
+     * )
+     */
+    #[Vich\UploadableField(mapping:"voiture_image", fileNameProperty:"filename")]
+    private $imageFile;
+
     #[ORM\Column(length: 255)]
     private ?string $title;
 
     #[ORM\Column(type: 'text', nullable: true)]
     private ?string $description;
-
 
     #[ORM\Column]
     #[Assert\Range(min:1900, max:2023)]
@@ -57,13 +76,13 @@ class Voiture
     private ?int $prix;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $date;
+    private ?\DateTimeInterface $date_enregistrement;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $detail = null;
 
     #[ORM\Column]
-    #[Assert\Range(min:3, max:5)]
+    #[Assert\Range(min:0, max:1)]
 
     private ?int $porte = null;
 
@@ -79,9 +98,13 @@ class Voiture
     #[ORM\Column(type:"boolean")]
     private $visible = false;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $updated_at = null;
+
     public function __construct() {
         $this->id = null;
-        $this->date = new \DateTime();
+        $this->date_enregistrement = new \DateTime();
+        $this->updated_at = new \DateTime();
     }
     public function getId(): ?int
     {
@@ -168,14 +191,14 @@ class Voiture
     { 
         return number_format($this->prix,0,""," ") . " €";
     }
-    public function getDate(): ?\DateTimeInterface
+    public function getDate_enregistrement(): ?\DateTimeInterface
     {
-        return $this->date;
+        return $this->date_enregistrement;
     }
 
-    public function setDate(\DateTimeInterface $date): static
+    public function setDate_enregistrement(\DateTimeInterface $date_enregistrement): static
     {
-        $this->date = $date;
+        $this->date_enregistrement = $date_enregistrement;
 
         return $this;
     }
@@ -192,29 +215,29 @@ class Voiture
         return $this;
     }
 
-    public function getPorte(): ?int
+    public function getPorte(): ?string
     {
         return $this->porte;
     }
 
-    public function setPorte(int $porte): static
+    public function setPorte(string $porte): self
     {
         $this->porte = $porte;
 
         return $this;
     }
 
-public function getMotorisation(): ?string
-{
+    public function getMotorisation(): ?string
+    {
     return $this->motorisation;
-}
+    }
 
-public function setMotorisation(?string $motorisation): self
-{
+    public function setMotorisation(?string $motorisation): self
+    {
     $this->motorisation = $motorisation;
 
     return $this;
-}
+    }
 
     public function getGps(): ?string
     {
@@ -239,7 +262,7 @@ public function setMotorisation(?string $motorisation): self
 
         return $this;
     }
-public function isVisible(): bool
+    public function isVisible(): bool
     {
         return $this->visible;
     }
@@ -248,6 +271,55 @@ public function isVisible(): bool
     {
         $this->visible = $visible;
 
+        return $this;
+    }
+    /**
+     * @return null|string
+     */
+    public function getFilename(): ?string
+    {
+        return $this->filename;
+    }
+
+    /**
+     * @param null|string $filename
+     * @return Voiture
+     */
+    public function setFilename(?string $filename): Voiture
+    {
+        $this->filename = $filename;
+        return $this;
+    }
+    /**
+     * @return null|File
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param null|File $imageFile
+     * @return Voiture
+     */
+
+    public function setImageFile(?File $imageFile): Voiture
+    {
+        $this->imageFile = $imageFile;
+        if ($this->imageFile instanceof UploadedFile) {
+            $this->updated_at = new \DateTime('now');
+        }
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
         return $this;
     }
 }
