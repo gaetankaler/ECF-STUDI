@@ -31,7 +31,7 @@ class RechercheVoitureType extends AbstractType
               "required" => false,
               "label" => false,
               "attr" =>  [
-                "placeholder" => "kilomètre max"
+                "placeholder" => "Kilomètre max"
               ]
             ])
         ;
@@ -45,7 +45,7 @@ class RechercheVoitureType extends AbstractType
             "csrf_protection" => false,
         ]);
     }
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return '';
     }

@@ -26,8 +26,8 @@ class VoitureType extends AbstractType
             ->add('porte', ChoiceType::class, [
                 'label' => 'Nombre de portes',
                 'choices' => [
-                    3 => "0",
-                    5 => "1",
+                    "3" => "3",
+                    "5" => "5",
                 ],
             ])
             ->add('motorisation', ChoiceType::class, [

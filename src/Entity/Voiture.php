@@ -82,8 +82,7 @@ class Voiture
     private ?string $detail = null;
 
     #[ORM\Column]
-    #[Assert\Range(min:0, max:1)]
-
+    #[Assert\Range(min:3, max:5)]
     private ?int $porte = null;
 
     #[ORM\Column(length: 255)]

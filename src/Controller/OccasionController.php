@@ -1,11 +1,14 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Contact;
 use App\Entity\RechercheVoiture;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Voiture;
+use App\Form\ContactType;
 use App\Form\RechercheVoitureType;
+use App\Notification\ContactNotification;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
@@ -40,7 +43,7 @@ public function index(PaginatorInterface $paginator, Request $request): Response
     $voitures = $paginator->paginate(
         $this->voitureRepository->findAllVisibleQuery($recherche),
         $request->query->getInt('page', 1),
-        9
+        12
     );
 
     // Vérifier si au moins une voiture existe
@@ -78,16 +81,31 @@ public function index(PaginatorInterface $paginator, Request $request): Response
     /**
      * @Route("/detail/{id}", name="detail")
      */
-    public function details(int $id): Response
-    {
-        $voiture = $this->entityManager->getRepository(Voiture::class)->find($id);
+    public function details(int $id, Request $request, ContactNotification $notification): Response
+{
+    $voiture = $this->entityManager->getRepository(Voiture::class)->find($id);
 
-        if (!$voiture) {
-            throw new NotFoundHttpException('Voiture non trouvée.');
-        }
+    if (!$voiture) {
+        throw new NotFoundHttpException('Voiture non trouvée.');
+    }
 
-        return new Response($this->twig->render("pages/details.html.twig", [
-            'voiture' => $voiture,
-        ]));
+    $contact = new Contact();
+    $contact->setVoiture($voiture);
+    $form = $this->createForm(ContactType::class, $contact);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $notification->notify($contact);
+        $this->addFlash("success", "Votre email a bien été envoyé");
+                    return $this->redirectToRoute("detail", [
+                "id" => $voiture->getId(),
+                "slug" => $voiture->getSlug(),
+            ],);
+    }
+    return $this->render("pages/details.html.twig", [
+        'voiture' => $voiture,
+        "current_menu" => "voitures",
+        'form' => $form->createView()
+    ]);
     }
 }

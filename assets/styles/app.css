@@ -1,0 +1,12 @@
+.hide-button {
+  display: none;
+}
+.show-button {
+  display: block;
+}
+.hide-form {
+  display: none;
+}
+.show-form {
+  display: block;
+}

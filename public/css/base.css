@@ -71,7 +71,7 @@ footer {
 .fa-twitter {
   color: #1da1f2;
 }
-.fa-facebook {
+.fa-facebook-f {
   color: #1877f2;
 }
 /* Styles pour les sections du footer */
@@ -86,7 +86,7 @@ footer {
   font-size: 6px;
   border: 1px solid black;
 }
-@media screen and (min-width: 321px) {
+*/ @media screen and (min-width: 321px) {
   html {
     font-size: 11px;
   }
