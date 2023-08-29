@@ -11,13 +11,6 @@ import "./styles/app.css";
 // start the Stimulus application
 import "./bootstrap";
 
-// let $contactButton = $("#contactButton");
-// $contactButton.click((e) => {
-//   e.preventDefault();
-//   $("#contactForm").slideDown();
-//   $contactButton.slideUp();
-// });
-// Utilisez des classes CSS pour gérer l'affichage du formulaire et du bouton
 let $contactButton = $("#contactButton");
 let $contactForm = $("#contactForm");
 
@@ -27,7 +20,6 @@ $contactButton.click((e) => {
   $contactButton.slideUp();
 });
 
-// Si le formulaire est soumis avec des erreurs, masquez le formulaire et affichez à nouveau le bouton
 if ($contactForm.hasClass("show-form")) {
   $contactForm.show();
   $contactButton.hide();

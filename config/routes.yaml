@@ -7,9 +7,9 @@ service:
 occasion:
   path: "/occasion"
   controller: 'App\Controller\OccasionController::index'
-contact:
-  path: "/contact"
-  controller: 'App\Controller\ContactController::index'
+commentaires:
+  path: "/commentaires"
+  controller: 'App\Controller\CommentairesController::index'
 detail:
   path: "/detail/{id}"
   controller: 'App\Controller\OccasionController::details'

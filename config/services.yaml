@@ -29,6 +29,8 @@ services:
   App\Controller\AccueilController:
     arguments:
       $twig: "@twig"
+      $doctrine: "@doctrine"
+      $logger: "@logger"
     tags: ["controller.service_arguments"]
   App\Controller\ServiceController:
     arguments:

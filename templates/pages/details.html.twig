@@ -19,39 +19,34 @@
     <div class="row">
       <div class="col-md-7 d-flex justify-content-around">
         {% if voiture.filename %} {# <img src="{{ vich_uploader_asset(voiture, "imageFile") | imagine_filter("thumb")
-        }}" alt="card-img-top" style="width: 100%; height: auto;" > #} <img
-        src="{{ vich_uploader_asset(voiture, "imageFile") }}" alt="card-img-top"
-        style="width: 70%; height: 347px;padding: 30px;" > {% else %} {# <img
-        src="{{ "/images/voitures/vide.jpg" | imagine_filter("medium") }}"
-        alt="card-img-top" style="width: 100%; height: auto;"> #} <img src="{{
-          "/images/voitures/vide.jpg"
-        }}" alt="card-img-top" style="width: 70%; height: 347px;padding: 30px;"
-        > {% endif %}
+
+
+
+
+
+        }}" alt="card-img-top" style="width: 100%; height: auto;" > #} <img src="{{
+          vich_uploader_asset(voiture, "imageFile")
+        }}" alt="card-img-top" style="width: 70%; height: 347px;padding: 30px;" > {% else %} {# <img
+        src="{{ "/images/voitures/vide.jpg" | imagine_filter("medium") }}" alt="card-img-top"
+        style="width: 100%; height: auto;"> #} <img src="{{ "/images/voitures/vide.jpg" }}"
+        alt="card-img-top" style="width: 70%; height: 347px;padding: 30px;" > {% endif %}
       </div>
       <div class="col-md-4">
         <h1 class="mt-4 text-uppercase">{{ voiture.title }}</h1>
         <div style="font-size: 1.5rem">Année : {{ voiture.annee }}</div>
         <div style="font-size: 1.5rem">{{ voiture.kilometrage }} km</div>
-        <div
-          class="text-primary mb-2 mt-2"
-          style="font-size: 3rem; font-weight: bold"
-        >
+        <div class="text-primary mb-2 mt-2" style="font-size: 3rem; font-weight: bold">
           Prix : {{ voiture.formatPrix }}
         </div>
         <a
           href="#!"
-          class="btn btn-primary {{
-            form.vars.submitted ? 'hide-button' : 'show-button'
-          }}"
+          class="btn btn-primary {{ form.vars.submitted ? 'hide-button' : 'show-button' }}"
           id="contactButton"
         >
           Contacter le garage
         </a>
 
-        <div
-          id="contactForm"
-          class="{{ form.vars.submitted ? 'show-form' : 'hide-form' }}"
-        >
+        <div id="contactForm" class="{{ form.vars.submitted ? 'show-form' : 'hide-form' }}">
           {{ form_start(form) }}
           <div class="row">
             <div class="col">{{ form_row(form.firstname) }}</div>

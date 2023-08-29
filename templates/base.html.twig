@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
     <link rel="stylesheet" href="{{ asset('build/app.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/base.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     {# Run `composer require symfony/webpack-encore-bundle` to start using
     Symfony UX #} {% block stylesheets %}
     {{
@@ -69,7 +71,8 @@
       <div class="adresse-maps">
         <h6 class="title-adress"><b>Notre adresse</b></h6>
         <p class="adresse">1 Avenue des lauriers<br />31000 Toulouse</p>
-        <a href="#" class="itineraire">itinéraire</a>
+        <a href="#!" class="itineraire">itinéraire</a>
+        <div id="map"></div>
       </div>
     </div>
     <div class="col">
@@ -77,25 +80,25 @@
     <section class="mb-4"">
       <a
         class="btn text-white btn-floating m-1"
-        href="#!"
+        href="https://facebook.com/"
         role="button"
         ><i class="fab fa-facebook-f"></i
       ></a>
       <a
         class="btn text-white btn-floating m-1"
-        href="#!"
+        href="https://twitter.com/"
         role="button"
         ><i class="fab fa-twitter"></i
       ></a>
       <a
         class="btn text-white btn-floating m-1"
-        href="#!"
+        href="https://whatsapp.com/"
         role="button"
         ><i class="fab fa-whatsapp"></i
       ></a>
       <a
         class="btn text-white btn-floating m-1"
-        href="#!"
+        href="https://instagram.com/"
         role="button"
         ><i class="fab fa-instagram"></i
       ></a>
@@ -138,5 +141,7 @@
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset("build/app.js") }}"></script>
+    {# <script src="{{ asset("base.js") }}"></script> #}
+    {# <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCw3eg9vnTVO6NluFknIsgSGqaPFtK5FRA&callback=initMap" async defer></script> #}
   </body>
 </html>

@@ -10,3 +10,6 @@
 .show-form {
   display: block;
 }
+.comment-reply-form {
+  display: none;
+}

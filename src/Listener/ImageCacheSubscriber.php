@@ -65,16 +65,24 @@ class ImageCacheSubscriber implements EventSubscriber, CacheManagerAwareInterfac
         if (!$entity instanceof Voiture) {
             return;
         }
-
-        $changeSet = $args->getEntityChangeSet();
+                $changeSet = $args->getEntityChangeSet();
 
         if (isset($changeSet['imageFile'])) {
             [$oldImageFile, $newImageFile] = $changeSet['imageFile'];
-            if ($newImageFile instanceof UploadedFile && $newImageFile->getClientOriginalName() !== 'vide.jpg') {
+            if ($newImageFile instanceof UploadedFile && $oldImageFile !== $newImageFile) {
                 $this->cacheManager->remove($this->uploaderHelper->asset($entity, "imageFile"));
             }
         }
     }
+    //     $changeSet = $args->getEntityChangeSet();
+
+    //     if (isset($changeSet['imageFile'])) {
+    //         [$oldImageFile, $newImageFile] = $changeSet['imageFile'];
+    //         if ($newImageFile instanceof UploadedFile && $newImageFile->getClientOriginalName() !== 'vide.jpg') {
+    //             $this->cacheManager->remove($this->uploaderHelper->asset($entity, "imageFile"));
+    //         }
+    //     }
+    // }
   public function setCacheManager(CacheManager $cacheManager)
   {
     $this->cacheManager = $cacheManager;

@@ -3,18 +3,18 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Entity\RechercheVoiture;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Voiture;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use App\Form\ContactType;
 use App\Form\RechercheVoitureType;
 use App\Notification\ContactNotification;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Response;
-use Twig\Environment;
 use App\Repository\VoitureRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
+use Twig\Environment;
 use Knp\Component\Pager\PaginatorInterface;
 
 class OccasionController extends AbstractController

@@ -1,0 +1,62 @@
+{{ form_start(commentForm) }}
+<div class="row d-flex justify-content-center">
+  <div class="col-3 m-4">{{ form_row(commentForm.pseudo) }}</div>
+  <div class="col-3 m-4">{{ form_row(commentForm.email) }}</div>
+  <div class="col-12 text-center">
+    <div class="star">
+      <i class="lar la-star form-star" data-value="1"></i
+      ><i class="lar la-star form-star" data-value="2"></i
+      ><i class="lar la-star form-star" data-value="3"></i
+      ><i class="lar la-star form-star" data-value="4"></i
+      ><i class="lar la-star form-star" data-value="5"></i>
+    </div>
+
+    <input type="hidden" name="note" id="note" value="noteInput.value" />
+  </div>
+  <div class="col-9">{{ form_row(commentForm.contenue) }}</div>
+</div>
+<div class="row text-center">{{ form_row(commentForm.envoyer) }}</div>
+{{ form_end(commentForm) }}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const stars = document.querySelectorAll(".form-star");
+      const noteInput = document.querySelector("#commentaires_note");
+
+      stars.forEach((star) => {
+        star.addEventListener("mouseover", function () {
+          const value = this.dataset.value;
+          stars.forEach((s) => {
+            if (s.dataset.value <= value) {
+              s.style.color = "#ffd700"; // la couleur au survol
+              s.classList.remove("lar");
+              s.classList.add("las");
+            } else {
+              s.classList.remove("las");
+              s.classList.add("lar");
+            }
+          });
+        });
+
+  star.addEventListener("click", function () {
+    const value = this.dataset.value;
+    noteInput.value = value;
+  });
+
+
+        star.addEventListener("mouseout", function () {
+          const selectedValue = noteInput.value;
+          stars.forEach((s) => {
+            if (s.dataset.value <= selectedValue) {
+              s.style.color = "#ffd700"; // la couleur quand on clique
+              s.classList.remove("lar");
+              s.classList.add("las");
+            } else {
+              s.style.color = "#ddd"; // la couleur après le passage de la souris
+              s.classList.remove("las");
+              s.classList.add("lar");
+            }
+          });
+        });
+      });
+    });
+</script>

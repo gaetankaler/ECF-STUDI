@@ -9,6 +9,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
+
+
 class VoitureType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -47,10 +49,9 @@ class VoitureType extends AbstractType
                     'Oui' => "Oui",
                     'Non' => "Non",
                 ],
-            ])
-        ;
+            ]);
     }
-private function getMotorisationChoices(): array
+    private function getMotorisationChoices(): array
     {
         $choices = Voiture::MOTORISATION;
         $output = [];

@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %} {% block stylesheets %}
+{{ parent() }}
+<link
+  rel="stylesheet"
+  href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
+/>
+{% endblock %} {% block body %}
+<main>
+  {% for commentaire in commentaires %}
+  <div class="row-3">
+    <div class="form-row m-2">
+      <div class="card" style="margin: 0 10px 0 10px">
+        <div class="card-body p-2 border border-primary rounded">
+          <p class="card-text">
+            Publié par {{ commentaire.pseudo }} le
+            {{ commentaire.getCreatedAt()|date('d/m/Y H:i') }}
+          </p>
+          <div class="afficher-la-note">
+            {% for i in range(1, 5) %} {% if i <= commentaire.getNote() %}
+            <i class="las la-star" style="color: #ffd700;font-size: 24px;"></i>
+            {% else %}
+            <i class="lar la-star" style="color: #ddd; font-size: 24px;"></i>
+            {% endif %} {% endfor %}
+          </div>
+          <p class="card-text mt-2">{{ commentaire.contenue }}</p>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  <div class="pagination">{{ knp_pagination_render(commentaires) }}</div>
+</main>
+
+{% endblock %}

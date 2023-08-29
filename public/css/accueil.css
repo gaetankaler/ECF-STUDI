@@ -1,21 +1,26 @@
-/* Styles pour le titre de la page */
+body {
+  margin: 0;
+  padding: 0;
+}
+.star {
+  font-size: 24px;
+}
+.row {
+  --bs-gutter-x: 0;
+}
 .title-page {
   text-align: center;
   text-decoration: underline;
   margin: 20px 0;
 }
-
-/* Styles pour l'image du garage */
 .img-garage {
   width: 50%;
   border-radius: 5px;
 }
-/* Styles pour l'introduction du garage */
 .intro {
   padding: 10px;
   margin-bottom: 10px;
 }
-/* Styles pour les types de services de réparations */
 .type-img {
   display: flex;
   justify-content: space-around;
@@ -30,98 +35,28 @@
   text-decoration: underline;
   font-size: 12px;
   margin-bottom: 10px;
-}
-/* Styles pour les cartes d'avis clients */
-.card {
-  width: 11rem;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-}
-.avis-clients {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-around;
-  flex-direction: column;
-}
-.card-avis-client {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-.card-text {
-  font-size: 6px;
-}
-.card-title {
-  font-size: 8px;
-}
-/* Styles pour le titre des avis clients */
-.title-avis {
-  text-align: center;
-  text-decoration: underline;
-  margin-bottom: 10px;
-}
-/* Styles pour le bouton "Tous les avis" */
-.btn {
-  margin: 10px 100px 0 100px;
-  border-radius: 15px;
+  color: black;
 }
 @media screen and (min-width: 321px) {
-  .card {
-    width: 10.5rem;
-  }
-  .card-title {
-    font-size: 9px;
-  }
-  .card-text {
-    font-size: 7px;
-  }
   .title-type-service {
     font-size: 13px;
-  }
-  .btn {
-    margin: 10px 110px 0px 110px;
   }
 }
 @media screen and (min-width: 425px) {
   .intro {
     margin-bottom: 30px;
   }
-  .card {
-    width: 11rem;
-  }
-  .card-text {
-    font-size: 10px;
-  }
-  .card-title {
-    font-size: 12px;
-  }
   .type-img {
     margin-bottom: 30px;
   }
   .title-type-service {
     font-size: 16px;
   }
-  .btn {
-    margin: 10px 120px 0px 120px;
-  }
 }
 @media screen and (min-width: 768px) {
-  .card {
-    width: 20rem;
-  }
-  .card-text {
-    font-size: 12px;
-  }
-  .card-title {
-    font-size: 16px;
-  }
   .type-img {
     margin-bottom: 50px;
     font-size: 16px;
-  }
-  .btn {
-    margin: 20px 240px 0px 240px;
   }
   .title-type-service {
     font-size: 22px;
@@ -132,23 +67,8 @@
   .intro {
     margin-bottom: 30px;
   }
-  .card {
-    width: 20.5rem;
-  }
-  .card-text {
-    font-size: 12px;
-  }
   .type-img {
     font-size: 18px;
-  }
-  .card-title {
-    font-size: 14px;
-  }
-  .btn {
-    margin: 20px 330px 0px 330px;
-  }
-  .title-avis {
-    margin: 20px 0;
   }
   .title-type-service {
     font-size: 22px;
@@ -159,23 +79,8 @@
   .intro {
     margin-bottom: 40px;
   }
-  .card {
-    width: 29rem;
-  }
-  .card-text {
-    font-size: 16px;
-  }
   .type-img {
     font-size: 24px;
-  }
-  .card-title {
-    font-size: 18px;
-  }
-  .btn {
-    margin: 20px 470px 0px 470px;
-  }
-  .title-avis {
-    margin-bottom: 40px;
   }
   .title-type-service {
     font-size: 32px;
@@ -190,19 +95,7 @@
   .type {
     font-size: 24px;
   }
-  .card {
-    width: 31rem;
-  }
-  .card-text {
-    font-size: 16px;
-  }
   .type-img {
     font-size: 26px;
-  }
-  .card-title {
-    font-size: 16px;
-  }
-  .btn {
-    margin: 20px 500px 0px 500px;
   }
 }
