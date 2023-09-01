@@ -7,10 +7,14 @@ use App\Form\VoitureType;
 use App\Repository\VoitureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
+use Vich\UploaderBundle\Form\Type\VichImageType;
+
 
 
 class AdminVoitureController extends AbstractController
@@ -19,21 +23,21 @@ class AdminVoitureController extends AbstractController
     private Environment $twig;
     private EntityManagerInterface $em;
     
-    public function __construct(VoitureRepository $repository, Environment $twig, EntityManagerInterface $em)
+    public function __construct(VoitureRepository $repository, Environment $twig, EntityManagerInterface $em, ParameterBagInterface $params)
     {
         $this->repository = $repository;
         $this->twig = $twig;
         $this->em = $em;
     }
-#[Route('/admin/voitures', name: 'admin.voitures.index')]
+    #[Route('/admin/voitures', name: 'admin.voitures.index')]
     public function index()
     {
         $voitures = $this->repository->findAll();
         return new Response($this->twig->render("admin/voitures/index.html.twig", ['voitures' => $voitures]));
     }
-#[Route('/admin/voitures/new', name: 'admin.voitures.new')]
-    public function new(Request $request): Response
-    {      
+    #[Route('/admin/voitures/new', name: 'admin.voitures.new')]
+        public function new(Request $request): Response
+        {      
         $voiture = new Voiture(); 
         $form = $this->createForm(VoitureType::class, $voiture);
         $form->handleRequest($request);
@@ -51,22 +55,25 @@ class AdminVoitureController extends AbstractController
         ]));
     }
 
-#[Route('/admin/voitures/edit/{id}', name: 'edit', methods: ['GET', 'POST'])]
-public function edit($id, Request $request)
-{
+    #[Route('/admin/voitures/edit/{id}', name: 'edit', methods: ['GET', 'POST'])]
+    public function edit($id, Request $request)
+    {
         $voiture = $this->repository->find($id);
         if (!$voiture) {
             throw $this->createNotFoundException('Voiture introuvable.');
         }
-
+        
         $form = $this->createForm(VoitureType::class, $voiture);
         $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
-        if ($voiture->getImageFile()) {
+        if ($voiture->getImageFile() || $voiture->getImageCarousel1() || $voiture->getImageCarousel2() || $voiture->getImageCarousel3()) {
             $voiture->setUpdatedAt(new \DateTime());
             $this->em->persist($voiture);
             $this->em->flush();
+
+            $this->addFlash("success", "Annonce modifiée avec succès");
+            return $this->redirectToRoute('index');
         } else {
             $this->em->flush();
         }
@@ -79,7 +86,7 @@ public function edit($id, Request $request)
             'form' => $form->createView()
         ]));
     }
-#[Route('/admin/voitures/{id}', name: 'supprimer', methods: ['DELETE'])]
+    #[Route('/admin/voitures/{id}', name: 'supprimer', methods: ['DELETE'])]
     public function supprimer(Voiture $voiture, Request $request, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('supprimer' . $voiture->getId(), $request->get('_token'))) {
@@ -90,4 +97,3 @@ public function edit($id, Request $request)
         return $this->redirectToRoute("index");
     }
 }
-

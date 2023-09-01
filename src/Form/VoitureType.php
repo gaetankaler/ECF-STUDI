@@ -8,6 +8,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
+
 
 
 
@@ -23,7 +25,21 @@ class VoitureType extends AbstractType
             ->add('chevaux', null, ["label" => "Chevaux"])
             ->add('prix')
             ->add("imageFile", FileType::class, [
+                "label" => "Photo de couverture",
                 "required" => false
+            ])
+            ->add('imageCarousel1', FileType::class, [
+                'label' => 'Image Carousel 1',
+                'required' => false
+            ])
+            ->add('imageCarousel2', FileType::class, [
+                'label' => 'Image Carousel 2',
+                'required' => false
+
+            ])
+            ->add('imageCarousel3', FileType::class, [
+                'label' => 'Image Carousel 3',
+                'required' => false
             ])
             ->add('porte', ChoiceType::class, [
                 'label' => 'Nombre de portes',

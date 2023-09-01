@@ -20,7 +20,7 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $user = new User();
-        $user->setUsername('admin');
+        $user->setUsername('vincentParrot');
 
         $password = $this->hasher->hashPassword($user, 'pass_1234');
         $user->setPassword($password);

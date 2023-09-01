@@ -25,7 +25,10 @@ class VoitureFixture extends Fixture
                 $voiture->setGps($faker->randomElement(Voiture::GPS));
                 $voiture->setCamera($faker->randomElement(Voiture::CAMERA));
                 $voiture->setVisible(true);
-                $voiture->setFilename("vide.jpg");
+                $voiture->setFilename("photo.jpg");
+                $voiture->setnameImageCarousel1("photo.jpg");
+                $voiture->setnameImageCarousel2("photo.jpg");
+                $voiture->setnameImageCarousel3("photo.jpg");
             $manager->persist($voiture);
         }
         $manager->flush();

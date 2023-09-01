@@ -64,53 +64,49 @@
     </div>
     {% block body %}{% endblock %} 
         <div class="barre"></div>
-        <footer>
-    <div class="container text-center">
+<footer>
+    <div class="container">
   <div class="row">
     <div class="col">
-      <div class="adresse-maps">
-        <h6 class="title-adress"><b>Notre adresse</b></h6>
-        <p class="adresse">1 Avenue des lauriers<br />31000 Toulouse</p>
-        <a href="#!" class="itineraire">itinéraire</a>
+      <div class="adresse-maps text-start">
+        <iframe style="width: 350px;height: 200px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889.4657005244303!2d1.4286253757174698!3d43.596844256074675!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12aebb7102fe2baf%3A0x23372ba2958488ad!2sPeugeot!5e0!3m2!1sfr!2sfr!4v1693573800780!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         <div id="map"></div>
       </div>
     </div>
     <div class="col">
         <div class="container p-4 pb-0">
-    <section class="mb-4"">
+    <section class="mt-4">
       <a
         class="btn text-white btn-floating m-1"
         href="https://facebook.com/"
         role="button"
-        ><i class="fab fa-facebook-f"></i
+        ><i class="fab fa-facebook-f m-2" style="font-size: 2rem"></i
       ></a>
       <a
         class="btn text-white btn-floating m-1"
         href="https://twitter.com/"
         role="button"
-        ><i class="fab fa-twitter"></i
+        ><i class="fab fa-twitter m-2"style="font-size: 2rem"></i
       ></a>
       <a
         class="btn text-white btn-floating m-1"
         href="https://whatsapp.com/"
         role="button"
-        ><i class="fab fa-whatsapp"></i
+        ><i class="fab fa-whatsapp m-2"style="font-size: 2rem"></i
       ></a>
       <a
         class="btn text-white btn-floating m-1"
         href="https://instagram.com/"
         role="button"
-        ><i class="fab fa-instagram"></i
+        ><i class="fab fa-instagram m-2"style="font-size: 2rem"></i
       ></a>
     </section>
   </div>
     </div>
     <div class="col">
-              <div class="horaires-footer">
-        <h6 class="title-horaire"><b>Horaires d'ouverture</b></h6>
-        <p class="horaires">
-          lun au vend : 08:45-12:00 14:00-18:00<br />samedi : 08:45 - 12:00<br />dimanche
-          : fermé
+      <div class="horaires-footer">
+        <h6 class="title-horaire mt-2"><b>Horaires d'ouverture</b></h6>
+        <p class="horaires text-center">lun : 08:45-12:00 13:00-18:00<br />mar : 08:45-12:00 13:00-18:00<br />mer : 08:45-12:00 13:00-18:00<br />jeu : 08:45-12:00 13:00-18:00<br />ven : 08:45-12:00 13:00-18:00<br />sam : 08:45-12:00 13:00-18:00
         </p>
       </div>
     </div>
@@ -123,7 +119,6 @@
     <a class="text-white text-decoration-none" href="*!">Garage-v-parrot.com</a>
   </div>
 </copyright>
-
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
       integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -141,7 +136,5 @@
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset("build/app.js") }}"></script>
-    {# <script src="{{ asset("base.js") }}"></script> #}
-    {# <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCw3eg9vnTVO6NluFknIsgSGqaPFtK5FRA&callback=initMap" async defer></script> #}
   </body>
 </html>

@@ -46,13 +46,10 @@ footer {
 .title-adress {
   margin-bottom: 10px;
 }
-.horaires,
-.adresse {
+.horaires {
   font-size: 6px;
 }
-.adresse {
-  margin-bottom: 2px;
-}
+
 /* Styles pour les icônes sociales */
 .social {
   font-size: 16px;

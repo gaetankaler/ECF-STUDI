@@ -1,29 +1,8 @@
-    {# <div class="card mb-4" style="border-radius: 10px;">
-        {% if voiture.filename %}
-        {# <img src="{{ vich_uploader_asset(voiture, "imageFile") | imagine_filter("thumb") }}" alt="card-img-top" style="width: 100%; height: auto;border-radius: 10px 10px 0 0;" > #
-        <img src="{{ vich_uploader_asset(voiture, "imageFile") }}" alt="card-img-top" style="width: 100%; height: 276px;border-radius: 10px 10px 0 0;" >
-        {% else %}
-        {# <img src="{{ "/images/voitures/vide.jpg" | imagine_filter("medium") }}" alt="card-img-top" style="width: 100%; height: auto;border-radius: 10px 10px 0 0;" > #
-        <img src="{{ "/images/voitures/vide.jpg" }}" alt="card-img-top" style="width: 100%; height: 276px;border-radius: 10px 10px 0 0;" >
-        {% endif %}
-        <div class="card-body">
-            <h5 class="card-title">
-                <a href="{{ path("detail", {id: voiture.id}) }}">
-                    {{ voiture.title }}
-                </a>
-            </h5>
-            <p class="card-text">Année :{{ voiture.annee }}</p>
-            <p class="card-text">{{ voiture.kilometrage }} km</p>
-            <div class="text-primary" style="font-size:2rem; font-weight: bold;">
-                {{ voiture.formatPrix }} €
-            </div>
-        </div>
-    </div> #}
 <div class="card mb-4" style="border-radius: 10px;">
     {% if voiture.filename %}
     <img src="{{ vich_uploader_asset(voiture, "imageFile") }}" alt="card-img-top" style="width: 100%; height: 276px; border-radius: 10px 10px 0 0;">
     {% else %}
-    <img src="{{ "/images/voitures/vide.jpg" }}" alt="card-img-top" style="width: 100%; height: 276px; border-radius: 10px 10px 0 0;">
+    <img src="{{ "/image/photo.jpg" }}" alt="card-img-top" style="width: 100%; height: 276px; border-radius: 10px 10px 0 0;">
     {% endif %}
     <div class="card-body">
         <h5 class="card-title">

@@ -14,7 +14,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class ImageCacheSubscriber implements EventSubscriber, CacheManagerAwareInterface {
 
-    private EntityManagerInterface $entityManager; // test
+    private EntityManagerInterface $entityManager;
 
   /**
    * @var CacheManager
@@ -35,13 +35,7 @@ class ImageCacheSubscriber implements EventSubscriber, CacheManagerAwareInterfac
         $this->cacheManager = $cacheManager;
         $this->uploaderHelper = $uploaderHelper;
         $this->entityManager = $entityManager;
-    } // fin test
-
-  // public function __construct(CacheManager $cacheManager, UploaderHelper $uploaderHelper)
-  // {
-  //   $this->cacheManager = $cacheManager;
-  //   $this->uploaderHelper = $uploaderHelper;
-  // }
+    }
 
   public function getSubscribedEvents(): array
   {
@@ -58,6 +52,9 @@ class ImageCacheSubscriber implements EventSubscriber, CacheManagerAwareInterfac
         return;
     }
     $this->cacheManager->remove($this->uploaderHelper->asset($entity, "imageFile"));
+    $this->cacheManager->remove($this->uploaderHelper->asset($entity, "imageCarousel1"));
+    $this->cacheManager->remove($this->uploaderHelper->asset($entity, "imageCarousel2"));
+    $this->cacheManager->remove($this->uploaderHelper->asset($entity, "imageCarousel3"));
   }
     public function preUpdate(PreUpdateEventArgs $args)
     {
@@ -73,16 +70,29 @@ class ImageCacheSubscriber implements EventSubscriber, CacheManagerAwareInterfac
                 $this->cacheManager->remove($this->uploaderHelper->asset($entity, "imageFile"));
             }
         }
+        if (isset($changeSet['imageCarousel1'])) {
+    [$oldImageCarousel1, $newImageCarousel1] = $changeSet['imageCarousel1'];
+    if ($newImageCarousel1 instanceof UploadedFile && $oldImageCarousel1 !== $newImageCarousel1) {
+        $this->cacheManager->remove($this->uploaderHelper->asset($entity, "imageCarousel1"));
     }
-    //     $changeSet = $args->getEntityChangeSet();
+}
 
-    //     if (isset($changeSet['imageFile'])) {
-    //         [$oldImageFile, $newImageFile] = $changeSet['imageFile'];
-    //         if ($newImageFile instanceof UploadedFile && $newImageFile->getClientOriginalName() !== 'vide.jpg') {
-    //             $this->cacheManager->remove($this->uploaderHelper->asset($entity, "imageFile"));
-    //         }
-    //     }
-    // }
+if (isset($changeSet['imageCarousel2'])) {
+    [$oldImageCarousel2, $newImageCarousel2] = $changeSet['imageCarousel2'];
+    if ($newImageCarousel2 instanceof UploadedFile && $oldImageCarousel2 !== $newImageCarousel2) {
+        $this->cacheManager->remove($this->uploaderHelper->asset($entity, "imageCarousel2"));
+    }
+}
+
+if (isset($changeSet['imageCarousel3'])) {
+    [$oldImageCarousel3, $newImageCarousel3] = $changeSet['imageCarousel3'];
+    if ($newImageCarousel3 instanceof UploadedFile && $oldImageCarousel3 !== $newImageCarousel3) {
+        $this->cacheManager->remove($this->uploaderHelper->asset($entity, "imageCarousel3"));
+    }
+}
+
+    }
+    
   public function setCacheManager(CacheManager $cacheManager)
   {
     $this->cacheManager = $cacheManager;
