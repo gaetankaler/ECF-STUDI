@@ -53,7 +53,6 @@ public function findAllVisibleQuery(RechercheVoiture $recherche): Query
     return $query->getQuery();
 }
 
-
 /**
 * @return Voiture[] Returns an array of Voiture objects
 */

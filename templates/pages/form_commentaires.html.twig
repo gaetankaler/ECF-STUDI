@@ -27,7 +27,7 @@
           const value = this.dataset.value;
           stars.forEach((s) => {
             if (s.dataset.value <= value) {
-              s.style.color = "#ffd700"; // la couleur au survol
+              s.style.color = "#ffd700";
               s.classList.remove("lar");
               s.classList.add("las");
             } else {
@@ -47,11 +47,11 @@
           const selectedValue = noteInput.value;
           stars.forEach((s) => {
             if (s.dataset.value <= selectedValue) {
-              s.style.color = "#ffd700"; // la couleur quand on clique
+              s.style.color = "#ffd700";
               s.classList.remove("lar");
               s.classList.add("las");
             } else {
-              s.style.color = "#ddd"; // la couleur après le passage de la souris
+              s.style.color = "#ddd";
               s.classList.remove("las");
               s.classList.add("lar");
             }

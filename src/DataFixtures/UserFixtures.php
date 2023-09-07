@@ -5,7 +5,7 @@ namespace App\DataFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use App\Entity\User; // Ajoutez cette ligne pour importer la classe User
+use App\Entity\User;
 
 class UserFixtures extends Fixture
 {
@@ -16,16 +16,17 @@ class UserFixtures extends Fixture
         $this->hasher = $hasher;
     }
 
-    // ...
-    public function load(ObjectManager $manager)
-    {
-        $user = new User();
-        $user->setUsername('vincentParrot');
+public function load(ObjectManager $manager)
+{
+    $user = new User();
+    $user->setUsername('admin');
 
-        $password = $this->hasher->hashPassword($user, 'pass_1234');
-        $user->setPassword($password);
+    $password = $this->hasher->hashPassword($user, 'pass_1234');
+    $user->setPassword($password);
 
-        $manager->persist($user);
-        $manager->flush();
-    }
+    $user->setRoles(['ROLE_ADMIN']);
+
+    $manager->persist($user);
+    $manager->flush();
+}
 }

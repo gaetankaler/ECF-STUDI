@@ -32,3 +32,18 @@ login:
   methods: [GET, POST]
 logout:
   path: /logout
+ajouter_employe:
+  path: /security/ajouter_employe
+  controller: 'App\Controller\EmployeController::ajouterEmploye'
+editEmploye:
+  path: "/security/editEmploye/{id}"
+  controller: 'App\Controller\SecurityController::editEmploye'
+  methods: ["GET", "POST"]
+newEmploye:
+  path: "/security/newEmploye"
+  controller: 'App\Controller\SecurityController::newEmploye'
+  methods: ["GET", "POST"]
+supprimerEmploye:
+  path: "/security/supprimer_employe/{id}"
+  controller: 'App\Controller\SecurityController::supprimerEmploye'
+  methods: ["DELETE"]

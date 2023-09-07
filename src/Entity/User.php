@@ -21,6 +21,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 
+    private array $roles = [];
+
+    public function __construct()
+    {
+        $this->roles = ['ROLE_ADMIN'];
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,6 +60,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         return ["ROLE_ADMIN"];
+        return $this->roles;
+
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+        return $this;
     }
 
     public function getSalt()
@@ -87,4 +102,3 @@ public function getUserIdentifier(): string
         ) = unserialize($serialized, ["allowed_classes" => false]);
     }
 }
-

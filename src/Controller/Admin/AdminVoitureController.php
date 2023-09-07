@@ -4,36 +4,38 @@ namespace App\Controller\Admin;
 
 use App\Entity\Voiture;
 use App\Form\VoitureType;
+use App\Repository\EmployeRepository;
 use App\Repository\VoitureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 
 
 
 class AdminVoitureController extends AbstractController
 {
+    private EmployeRepository $employeRepository;
     private VoitureRepository $repository;
     private Environment $twig;
     private EntityManagerInterface $em;
     
-    public function __construct(VoitureRepository $repository, Environment $twig, EntityManagerInterface $em, ParameterBagInterface $params)
+    public function __construct(VoitureRepository $repository, Environment $twig, EntityManagerInterface $em, ParameterBagInterface $params, EmployeRepository $employeRepository)
     {
         $this->repository = $repository;
         $this->twig = $twig;
         $this->em = $em;
+        $this->employeRepository = $employeRepository;
     }
     #[Route('/admin/voitures', name: 'admin.voitures.index')]
     public function index()
     {
         $voitures = $this->repository->findAll();
-        return new Response($this->twig->render("admin/voitures/index.html.twig", ['voitures' => $voitures]));
+        $employes = $this->employeRepository->findAll();
+        return new Response($this->twig->render("admin/voitures/index.html.twig", ['voitures' => $voitures, 'employes' => $employes]));
     }
     #[Route('/admin/voitures/new', name: 'admin.voitures.new')]
         public function new(Request $request): Response
@@ -45,7 +47,7 @@ class AdminVoitureController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->persist($voiture);
             $this->em->flush();
-                $this->addFlash("success", "Annonce crée avec succès");
+            $this->addFlash("success", "Annonce crée avec succès");
             return $this->redirectToRoute('index');
         }
 
@@ -86,14 +88,15 @@ class AdminVoitureController extends AbstractController
             'form' => $form->createView()
         ]));
     }
-    #[Route('/admin/voitures/{id}', name: 'supprimer', methods: ['DELETE'])]
-    public function supprimer(Voiture $voiture, Request $request, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('supprimer' . $voiture->getId(), $request->get('_token'))) {
-            $entityManager->remove($voiture);
-            $entityManager->flush();
-            $this->addFlash("success", "Annonce supprimée avec succès");
-        }
-        return $this->redirectToRoute("index");
+#[Route('/admin/voitures/{id}', name: 'supprimerVoiture', methods: ['DELETE'])]
+public function supprimer(Voiture $voiture, Request $request, EntityManagerInterface $entityManager): Response
+{
+    if ($this->isCsrfTokenValid('supprimer' . $voiture->getId(), $request->get('_token'))) {
+        $entityManager->remove($voiture);
+        $entityManager->flush();
+        $this->addFlash("success", "Annonce supprimée avec succès");
     }
+    return $this->redirectToRoute("index");
+}
+
 }

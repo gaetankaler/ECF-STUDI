@@ -1,13 +1,50 @@
 {% extends "base.html.twig" %}
 {% block title 'Gerer les voitures' %}
 {% block body %}
+  {% for message in app.flashes('success') %}
+  <div class="alert alert-success text-center">
+    {{ message }}
+  </div>
+  {% endfor %}
+<div class="d-flex ">
 <div class="container mt-4">
-  <h1>Gérer les voitures</h1>
+  <h1>Ajouter un employé</h1>
+  {% if is_granted('ROLE_ADMIN') %}
   {% for message in app.flashes('success') %}
   <div class="alert alert-success">
     {{ message }}
   </div>
   {% endfor %}
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for employe in employes %}
+      <tr>
+        <td>{{ employe.email }}</td>
+        <td>
+      <a href="{{ path("editEmploye", {id: employe.id}) }}" class="btn btn-secondary">Editer</a>
+      <form method="post" action="{{ path("supprimerEmploye", {id: employe.id}) }}" style="display: inline-block;" onsubmit="return confirm('Etes vous vraiment sur ?')">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="_token" value="{{ csrf_token("supprimer" ~ employe.id) }}">
+        <button class="btn btn-danger">Supprimer</button>
+          </form>
+          </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="text-right" style="text-align: right;">
+    <a href="{{ path("newEmploye")}}" class="btn btn-primary">Créer un employé</a>
+  </div>
+</div>
+{% endif %}
+<div class="container mt-4">
+  <h1>Gérer les voitures</h1>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -35,4 +72,5 @@
     <a href="{{ path("new")}}" class="btn btn-primary">Créer une nouvelle annonce</a>
   </div>
 </div>
+</div></div>
 {% endblock %}

@@ -1,13 +1,17 @@
 security:
-  # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
   password_hashers:
     Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: "auto"
-  # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+
   providers:
-    from_database:
+    app_user_provider:
       entity:
         class: App\Entity\User
         property: username
+    app_employe_provider:
+      entity:
+        class: App\Entity\Employe
+        property: email
+
   firewalls:
     dev:
       pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -18,8 +22,10 @@ security:
         path: /logout
         target: /
       form_login:
+        login_path: login
         check_path: login
-        # provider: from_database
+        default_target_path: /admin
+        provider: app_user_provider
 
   # activate different ways to authenticate
   # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -30,5 +36,5 @@ security:
   # Easy way to control access for large sections of your site
   # Note: Only the *first* access control that matches will be used
   access_control:
-    - { path: ^/admin, roles: ROLE_ADMIN }
-    # - { path: ^/profile, roles: ROLE_USER }
+    - { path: ^/admin, roles: [ROLE_ADMIN, ROLE_USER] }
+    - { path: ^/profile, roles: ROLE_USER }

@@ -21,7 +21,6 @@ class CommentairesController extends AbstractController
     {
         $this->entityManager = $entityManager;
         $this->commentairesRepository = $commentairesRepository;
-        // $this->note = 0;
     }
 
 /**
