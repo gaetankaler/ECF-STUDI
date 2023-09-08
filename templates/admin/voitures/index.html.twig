@@ -8,8 +8,8 @@
   {% endfor %}
 <div class="d-flex ">
 <div class="container mt-4">
-  <h1>Ajouter un employé</h1>
   {% if is_granted('ROLE_ADMIN') %}
+  <h1>Ajouter un employé</h1>
   {% for message in app.flashes('success') %}
   <div class="alert alert-success">
     {{ message }}

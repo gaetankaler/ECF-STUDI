@@ -6,10 +6,10 @@
   integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
   crossorigin="anonymous"
 />
-{% endblock %} {% block body %}
-
-<div class="container mt-4">
-  <h1>Créer un employé</h1>
-  {{ include("security/ajouter_employe.html.twig", { button: "Créer" }) }}
-</div>
+{% endblock %} {% block title %}Créer un employé{% endblock %}{% block body %}
+<h1>Créer un employé</h1>
+{{ form_start(form) }}
+{{ form_widget(form) }}
+<button type="submit" class="btn btn-primary">Créer</button>
+{{ form_end(form) }}
 {% endblock %}

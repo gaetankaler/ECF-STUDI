@@ -70,7 +70,7 @@ class AdminVoitureController extends AbstractController
 
     if ($form->isSubmitted() && $form->isValid()) {
         if ($voiture->getImageFile() || $voiture->getImageCarousel1() || $voiture->getImageCarousel2() || $voiture->getImageCarousel3()) {
-            $voiture->setUpdatedAt(new \DateTime());
+            $voiture->setDate_enregistrement(new \DateTime());
             $this->em->persist($voiture);
             $this->em->flush();
 
@@ -98,5 +98,4 @@ public function supprimer(Voiture $voiture, Request $request, EntityManagerInter
     }
     return $this->redirectToRoute("index");
 }
-
 }

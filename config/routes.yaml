@@ -1,49 +1,59 @@
 accueil:
   path: "/"
   controller: 'App\Controller\AccueilController::index'
+
 service:
   path: "/service"
   controller: 'App\Controller\ServiceController::index'
+
 occasion:
   path: "/occasion"
   controller: 'App\Controller\OccasionController::index'
+
 commentaires:
   path: "/commentaires"
   controller: 'App\Controller\CommentairesController::index'
+
 detail:
   path: "/detail/{id}"
   controller: 'App\Controller\OccasionController::details'
+
 index:
   path: "/admin"
   controller: 'App\Controller\Admin\AdminVoitureController::index'
+
 edit:
   path: "/admin/voitures/edit/{id}"
   controller: 'App\Controller\Admin\AdminVoitureController::edit'
+
 new:
   path: "/admin/voitures/new"
   controller: 'App\Controller\Admin\AdminVoitureController::new'
+
 supprimer:
   path: "/supprimer/{id}"
   controller: 'App\Controller\Admin\AdminVoitureController::supprimer'
   methods: [DELETE]
+
 login:
   path: /login
   controller: 'App\Controller\SecurityController::login'
   methods: [GET, POST]
+
 logout:
   path: /logout
-ajouter_employe:
-  path: /security/ajouter_employe
-  controller: 'App\Controller\EmployeController::ajouterEmploye'
+
 editEmploye:
   path: "/security/editEmploye/{id}"
-  controller: 'App\Controller\SecurityController::editEmploye'
-  methods: ["GET", "POST"]
+  controller: 'App\Controller\EmployeController::editEmploye'
+  # methods: ["GET", "POST"]
+
 newEmploye:
   path: "/security/newEmploye"
-  controller: 'App\Controller\SecurityController::newEmploye'
-  methods: ["GET", "POST"]
+  controller: 'App\Controller\EmployeController::newEmploye'
+  # methods: ["GET", "POST"]
+
 supprimerEmploye:
   path: "/security/supprimer_employe/{id}"
-  controller: 'App\Controller\SecurityController::supprimerEmploye'
+  controller: 'App\Controller\EmployeController::supprimerEmploye'
   methods: ["DELETE"]

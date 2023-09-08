@@ -16,21 +16,20 @@ class EmployeFixture extends Fixture
         $this->hasher = $hasher;
     }
 
-public function load(ObjectManager $manager)
-{
-    // for ($i = 0; $i < 10; $i++) {
-        $employe = new Employe();
-        // $employe->setEmail("employe$i@example.com");
-        $employe->setEmail("e@e.com");
+    public function load(ObjectManager $manager)
+    {
+        for ($i = 0; $i < 10; $i++) {
+            $employe = new Employe();
+            $employe->setEmail("employe$i@example.com");
 
-        $password = $this->hasher->hashPassword($employe, 'pass_1234');
-        $employe->setPassword($password);
+            $password = $this->hasher->hashPassword($employe, 'pass_1234');
+            $employe->setPassword($password);
 
-        $employe->setRoles(['ROLE_USER']);
+            $employe->setRoles(['ROLE_USER']);
 
 
-        $manager->persist($employe);
-        $manager->flush();
-    // }
-}
+            $manager->persist($employe);
+            $manager->flush();
+        }
+    }
 }
