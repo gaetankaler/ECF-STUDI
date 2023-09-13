@@ -3,8 +3,10 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Voiture;
+use App\Entity\Employe;
 use App\Form\VoitureType;
 use App\Repository\EmployeRepository;
+use App\Repository\HoraireGarageRepository;
 use App\Repository\VoitureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,29 +16,46 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-
-
 class AdminVoitureController extends AbstractController
 {
     private EmployeRepository $employeRepository;
     private VoitureRepository $repository;
+    private HoraireGarageRepository $horaires; 
     private Environment $twig;
     private EntityManagerInterface $em;
+    private HoraireGarageRepository $horaireGarageRepository;
     
-    public function __construct(VoitureRepository $repository, Environment $twig, EntityManagerInterface $em, ParameterBagInterface $params, EmployeRepository $employeRepository)
-    {
+    public function __construct(
+        VoitureRepository $repository,
+        Environment $twig,
+        EntityManagerInterface $em,
+        ParameterBagInterface $params,
+        EmployeRepository $employeRepository,
+        HoraireGarageRepository $horaireGarageRepository
+        
+    ) {
         $this->repository = $repository;
         $this->twig = $twig;
         $this->em = $em;
         $this->employeRepository = $employeRepository;
+        $this->horaires = $horaireGarageRepository;
+        $this->horaireGarageRepository = $horaireGarageRepository;
     }
-    #[Route('/admin/voitures', name: 'admin.voitures.index')]
-    public function index()
-    {
-        $voitures = $this->repository->findAll();
-        $employes = $this->employeRepository->findAll();
-        return new Response($this->twig->render("admin/voitures/index.html.twig", ['voitures' => $voitures, 'employes' => $employes]));
-    }
+    
+#[Route('/admin/voitures', name: 'admin.voitures.index')]
+public function index(): Response
+{
+    $employes = $this->em->getRepository(Employe::class)->findAll();
+    $voitures = $this->em->getRepository(Voiture::class)->findAll();
+    $horaires = $this->horaireGarageRepository->findAll();
+
+    $this->twig->addGlobal('horaires', $horaires);
+
+    return $this->render('admin\voitures\index.html.twig', [
+        'voitures' => $voitures,
+        'employes' => $employes,
+    ]);
+}
     #[Route('/admin/voitures/new', name: 'admin.voitures.new')]
         public function new(Request $request): Response
         {      

@@ -11,16 +11,21 @@ use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Repository\CommentairesRepository;
 use Symfony\Component\HttpFoundation\Response;
+use App\Repository\HoraireGarageRepository;
 
 class CommentairesController extends AbstractController
 {
     private $entityManager;
     private $commentairesRepository;
+    private $horaireGarageRepository;
 
-    public function __construct(EntityManagerInterface $entityManager, CommentairesRepository $commentairesRepository)
+
+    public function __construct(EntityManagerInterface $entityManager, CommentairesRepository $commentairesRepository, HoraireGarageRepository $horaireGarageRepository)
     {
         $this->entityManager = $entityManager;
         $this->commentairesRepository = $commentairesRepository;
+        $this->horaireGarageRepository = $horaireGarageRepository;
+
     }
 
 /**
@@ -28,6 +33,8 @@ class CommentairesController extends AbstractController
  */
 public function index(PaginatorInterface $paginator, Request $request): Response
 {
+        $horaires = $this->horaireGarageRepository->findAll();
+
     $query = $this->commentairesRepository->findAll();
     $commentaires = $paginator->paginate(
         $query,
@@ -37,6 +44,7 @@ public function index(PaginatorInterface $paginator, Request $request): Response
     
     return $this->render('pages/commentaires.html.twig', [
         'commentaires' => $commentaires,
+        'horaires' => $horaires,
     ]);
 }
 

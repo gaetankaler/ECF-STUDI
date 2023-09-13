@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use App\Repository\HoraireGarageRepository;
 
 
 
@@ -22,13 +23,17 @@ class EmployeController extends AbstractController
     private EmployeRepository $employeRepository;
     private Environment $twig;
     private EntityManagerInterface $em;
+    private $horaireGarageRepository;
 
-    public function __construct(EmployeRepository $employeRepository, Environment $twig, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher)
+
+    public function __construct(EmployeRepository $employeRepository, Environment $twig, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher, HoraireGarageRepository $horaireGarageRepository)
     {
         $this->employeRepository = $employeRepository;
         $this->twig = $twig;
         $this->em = $em;
         $this->passwordHasher = $passwordHasher;
+        $this->horaireGarageRepository = $horaireGarageRepository;
+
     }
 
 public function newEmploye(Request $request): Response
@@ -85,8 +90,8 @@ public function editEmploye(Request $request, Employe $employe): Response
 #[Route('/security/supprimer_employe/{id}', name: 'supprimerEmploye', methods: ['DELETE'])] 
     public function supprimerEmploye(Employe $employe, Request $request, EntityManagerInterface $entityManager): Response 
     { 
-  if ($this->isGranted('ROLE_ADMIN')) 
-  { 
+    if ($this->isGranted('ROLE_ADMIN')) 
+    { 
     if ($this->isCsrfTokenValid('supprimer' . $employe->getId(), $request->get('_token'))) 
     { 
       $entityManager->remove($employe); 

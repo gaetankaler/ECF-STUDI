@@ -16,25 +16,31 @@ use App\Repository\VoitureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Twig\Environment;
 use Knp\Component\Pager\PaginatorInterface;
+use App\Repository\HoraireGarageRepository;
 
 class OccasionController extends AbstractController
 {
     private $twig;
     private $entityManager;
     private $voitureRepository;
+    private $horaireGarageRepository;
 
-    public function __construct(Environment $twig, EntityManagerInterface $entityManager, VoitureRepository $voitureRepository)
+
+    public function __construct(Environment $twig, EntityManagerInterface $entityManager, VoitureRepository $voitureRepository, HoraireGarageRepository $horaireGarageRepository)
     {
         $this->twig = $twig;
         $this->entityManager = $entityManager;
         $this->voitureRepository = $voitureRepository;
+        $this->horaireGarageRepository = $horaireGarageRepository;
+
     }
 
     /**
      * @Route("/occasion")
      */
-public function index(PaginatorInterface $paginator, Request $request): Response
+public function index(PaginatorInterface $paginator, Request $request, HoraireGarageRepository $horaireGarageRepository): Response
 {
+        $horaires = $this->horaireGarageRepository->findAll();
 
     $recherche = new RechercheVoiture();
     $form = $this->createForm(RechercheVoitureType::class, $recherche);
@@ -54,7 +60,8 @@ public function index(PaginatorInterface $paginator, Request $request): Response
     return $this->render("pages/occasion.html.twig", [
         "current_menu" => "voitures",
         "voitures" => $voitures,
-        "form" => $form->createView()
+        "form" => $form->createView(),
+        'horaires' => $horaires,
     ]);
 }
 

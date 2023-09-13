@@ -46,14 +46,29 @@ logout:
 editEmploye:
   path: "/security/editEmploye/{id}"
   controller: 'App\Controller\EmployeController::editEmploye'
-  # methods: ["GET", "POST"]
 
 newEmploye:
   path: "/security/newEmploye"
   controller: 'App\Controller\EmployeController::newEmploye'
-  # methods: ["GET", "POST"]
 
 supprimerEmploye:
   path: "/security/supprimer_employe/{id}"
   controller: 'App\Controller\EmployeController::supprimerEmploye'
   methods: ["DELETE"]
+
+editHoraire:
+  path: "/admin/horaires/editHoraire/{id}"
+  controller: 'App\Controller\Admin\AdminHoraireController::editHoraire'
+
+newHoraire:
+  path: "/admin/horaires/newHoraire"
+  controller: 'App\Controller\Admin\AdminHoraireController::newHoraire'
+
+supprimerHoraire:
+  path: "/admin/horaires/supprimer_Horaire/{id}"
+  controller: 'App\Controller\Admin\AdminHoraireController::supprimerHoraire'
+  methods: ["DELETE"]
+
+admin_horaires:
+  path: "/admin/horaires"
+  controller: 'App\Controller\Admin\AdminHoraireController::index'

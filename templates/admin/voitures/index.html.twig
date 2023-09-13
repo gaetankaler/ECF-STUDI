@@ -10,6 +10,9 @@
 <div class="container mt-4">
   {% if is_granted('ROLE_ADMIN') %}
   <h1>Ajouter un employé</h1>
+    <div class="text-right" style="text-align: right;">
+    <a href="{{ path("newEmploye")}}" class="btn btn-primary">Créer un employé</a>
+  </div>
   {% for message in app.flashes('success') %}
   <div class="alert alert-success">
     {{ message }}
@@ -36,15 +39,46 @@
           </td>
       </tr>
       {% endfor %}
+      
     </tbody>
   </table>
-  <div class="text-right" style="text-align: right;">
-    <a href="{{ path("newEmploye")}}" class="btn btn-primary">Créer un employé</a>
+</div>
+<div class="container mt-4">
+  <h1>Ajouter un horaire</h1>
+    <div class="text-right" style="text-align: right;">
+    <a href="{{ path("newHoraire")}}" class="btn btn-primary">Créer un Horaire</a>
   </div>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for horaire in horaires %}
+      <tr>
+        <td>{{ horaire.jour }}</td>
+        <td>
+      <a href="{{ path("editHoraire", {id: horaire.id}) }}" class="btn btn-secondary">Editer</a>
+      <form method="post" action="{{ path("supprimerHoraire", {id: horaire.id}) }}" style="display: inline-block;" onsubmit="return confirm('Etes vous vraiment sur ?')">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="_token" value="{{ csrf_token("supprimer" ~ horaire.id) }}">
+        <button class="btn btn-danger">Supprimer</button>
+          </form>
+          </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 </div>
 {% endif %}
 <div class="container mt-4">
   <h1>Gérer les voitures</h1>
+    <div class="text-right" style="text-align: right;">
+    <a href="{{ path("new")}}" class="btn btn-primary">Créer une nouvelle annonce</a>
+  </div>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -68,9 +102,7 @@
       {% endfor %}
     </tbody>
   </table>
-  <div class="text-right" style="text-align: right;">
-    <a href="{{ path("new")}}" class="btn btn-primary">Créer une nouvelle annonce</a>
-  </div>
 </div>
-</div></div>
+</div>
+</div>
 {% endblock %}

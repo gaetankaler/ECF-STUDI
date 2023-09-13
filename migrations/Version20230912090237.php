@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230908130031 extends AbstractMigration
+final class Version20230912090237 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,12 +20,12 @@ final class Version20230908130031 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE commentaires ADD validated TINYINT(1) NOT NULL');
+        $this->addSql('CREATE TABLE horaire_garage (id INT AUTO_INCREMENT NOT NULL, jour VARCHAR(255) NOT NULL, ouverture VARCHAR(255) DEFAULT NULL, fermeture VARCHAR(255) DEFAULT NULL, fermer TINYINT(1) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE commentaires DROP validated');
+        $this->addSql('DROP TABLE horaire_garage');
     }
 }

@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Employe;
 use App\Form\EmployeType;
-// use App\Service\EmployeService;
 use App\Repository\EmployeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,6 +13,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
+use App\Repository\HoraireGarageRepository;
 
 
 class SecurityController extends AbstractController
@@ -21,25 +21,30 @@ class SecurityController extends AbstractController
     private EntityManagerInterface $em;
     private Environment $twig;
     private EmployeRepository $repository;
-    // private $employeService;
     private $entityManager;
+    private $horaireGarageRepository;
 
 
-    public function __construct(EmployeRepository $repository, Environment $twig, EntityManagerInterface $entityManager)
+
+    public function __construct(EmployeRepository $repository, Environment $twig, EntityManagerInterface $entityManager, HoraireGarageRepository $horaireGarageRepository)
     {
         $this->twig = $twig;
         $this->entityManager = $entityManager; 
         $this->repository = $repository;
-        // $this->employeService = $employeService;
+        $this->horaireGarageRepository = $horaireGarageRepository;
+
     }
 
     #[Route('security', name: 'index')]
     public function index(): Response
     {
+        $horaires = $this->horaireGarageRepository->findAll();
+
         $employes = $this->repository->findAll();
 
         return new Response($this->twig->render('admin/employes/index.html.twig', [
             'employes' => $employes, 
+            'horaires' => $horaires,
         ]));
     }
 
