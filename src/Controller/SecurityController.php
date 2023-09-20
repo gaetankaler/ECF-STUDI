@@ -38,6 +38,7 @@ class SecurityController extends AbstractController
     #[Route('security', name: 'index')]
     public function index(): Response
     {
+
         $horaires = $this->horaireGarageRepository->findAll();
 
         $employes = $this->repository->findAll();
@@ -51,11 +52,16 @@ class SecurityController extends AbstractController
     #[Route('/login', name: 'login')]
     public function login(AuthenticationUtils $authenticationUtils)
     {
-      $error = $authenticationUtils->getLastAuthenticationError();
-      $lastUsername = $authenticationUtils->getLastUsername();
+        
+        $horaires = $this->horaireGarageRepository->findAll();
+
+        $error = $authenticationUtils->getLastAuthenticationError();
+        $lastUsername = $authenticationUtils->getLastUsername();
         return $this->render('security/login.html.twig',[
         "last_username" =>$lastUsername,
-        "error" => $error
+        "error" => $error,
+        'horaires' => $horaires,
+
     ]);
     }
 }

@@ -28,6 +28,16 @@ class CommentairesRepository extends ServiceEntityRepository
             ->orderBy('c.created_at', 'DESC')
             ->getQuery();
     }
+public function findLatestValidComments(): array
+{
+    return $this->createQueryBuilder('c')
+        ->where('c.valide = :valide')
+        ->setParameter('valide', true)
+        ->orderBy('c.created_at', 'DESC')
+        // ->setMaxResults($limit)
+        ->getQuery()
+        ->getResult();
+}
 
 //    /**
 //     * @return Commentaires[] Returns an array of Commentaires objects

@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Voiture;
 use App\Entity\Employe;
 use App\Form\VoitureType;
+use App\Repository\CommentairesRepository;
 use App\Repository\EmployeRepository;
 use App\Repository\HoraireGarageRepository;
 use App\Repository\VoitureRepository;
@@ -43,22 +44,27 @@ class AdminVoitureController extends AbstractController
     }
     
 #[Route('/admin/voitures', name: 'admin.voitures.index')]
-public function index(): Response
+public function index(CommentairesRepository $commentairesRepository): Response
 {
     $employes = $this->em->getRepository(Employe::class)->findAll();
     $voitures = $this->em->getRepository(Voiture::class)->findAll();
     $horaires = $this->horaireGarageRepository->findAll();
+    $commentairesEnAttente = $commentairesRepository->findBy(['valide' => false], ['created_at' => 'DESC']);
 
     $this->twig->addGlobal('horaires', $horaires);
 
     return $this->render('admin\voitures\index.html.twig', [
         'voitures' => $voitures,
         'employes' => $employes,
+        'commentairesEnAttente' => $commentairesEnAttente,
+
     ]);
 }
     #[Route('/admin/voitures/new', name: 'admin.voitures.new')]
         public function new(Request $request): Response
-        {      
+        {   
+
+        $horaires = $this->horaireGarageRepository->findAll();
         $voiture = new Voiture(); 
         $form = $this->createForm(VoitureType::class, $voiture);
         $form->handleRequest($request);
@@ -72,13 +78,15 @@ public function index(): Response
 
         return new Response($this->twig->render("admin/voitures/new.html.twig", [
             "voiture" => $voiture,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'horaires' => $horaires,
         ]));
     }
 
     #[Route('/admin/voitures/edit/{id}', name: 'edit', methods: ['GET', 'POST'])]
     public function edit($id, Request $request)
     {
+        $horaires = $this->horaireGarageRepository->findAll();
         $voiture = $this->repository->find($id);
         if (!$voiture) {
             throw $this->createNotFoundException('Voiture introuvable.');
@@ -104,7 +112,8 @@ public function index(): Response
     
         return new Response($this->twig->render("admin/voitures/edit.html.twig", [
             'voiture' => $voiture,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'horaires' => $horaires,
         ]));
     }
 #[Route('/admin/voitures/{id}', name: 'supprimerVoiture', methods: ['DELETE'])]

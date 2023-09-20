@@ -21,8 +21,9 @@ class CommentairesFixture extends Fixture
 
                 $note = rand(1, 5);
                 $commentaires->setNote($note);
-
-            $manager->persist($commentaires);
+                $valide = (bool) mt_rand(0, 1);
+                $commentaires->setValide($valide);
+                $manager->persist($commentaires);
         }
         $manager->flush();
     }

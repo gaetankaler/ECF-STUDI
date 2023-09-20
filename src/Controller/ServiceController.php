@@ -21,9 +21,7 @@ class ServiceController
         $this->horaireGarageRepository = $horaireGarageRepository;
 
     } 
-    /**
-     * @Route("/service")
-     */
+    #[Route("/service")]
     public function index(): Response
     {
         $horaires = $this->horaireGarageRepository->findAll();

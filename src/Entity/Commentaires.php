@@ -26,11 +26,15 @@ class Commentaires
     #[ORM\Column(length: 255)]
     private ?string $pseudo = null;
 
-    #[ORM\Column(type:"datetime")]
+    #[ORM\Column(type: "datetime")]
     private $created_at;
+
 
     #[ORM\Column(type: Types::INTEGER)]
     private int $note = 0;
+
+    #[ORM\Column(type:"boolean")]
+    private $valide = false;
 
     public function __construct()
     {
@@ -95,6 +99,7 @@ class Commentaires
         return $this->created_at;
     }
 
+
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
@@ -111,5 +116,22 @@ class Commentaires
         $this->note = $note;
         return $this;
     }
+        public function isValide(): bool
+    {
+        return $this->valide;
+    }
 
+    public function setValide(bool $valide): self
+    {
+        $this->valide = $valide;
+        return $this;
+    }
+
+    /**
+     * Get the value of valide
+     */ 
+    public function getValide()
+    {
+        return $this->valide;
+    }
 }   

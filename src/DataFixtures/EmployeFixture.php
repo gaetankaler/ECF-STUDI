@@ -18,7 +18,7 @@ class EmployeFixture extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 6; $i++) {
             $employe = new Employe();
             $employe->setEmail("employe$i@example.com");
 

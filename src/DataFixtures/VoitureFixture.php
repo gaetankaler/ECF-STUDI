@@ -12,7 +12,7 @@ class VoitureFixture extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create("fr_FR");
-        for ($i = 0; $i < 30; $i++) {
+        for ($i = 0; $i < 6; $i++) {
             $voiture = new Voiture();
                 $voiture->setTitle($faker->words(2,true));
                 $voiture->setDescription($faker->sentences(3,true));

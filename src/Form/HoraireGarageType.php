@@ -32,10 +32,6 @@ class HoraireGarageType extends AbstractType
             ->add('fermetureApresMidi', TextType::class, [
                 'label' => 'Heure de fermeture l\'après-midi',
                 'required' => false,
-            ])
-            ->add('fermer', CheckboxType::class, [
-                'label' => 'Fermé',
-                'required' => false,
             ]);
     }
 

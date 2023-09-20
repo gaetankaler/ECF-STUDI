@@ -7,7 +7,6 @@
 />
 <link rel="stylesheet" href="{{ asset('css/accueil.css') }}" />
 <script src="{{ asset('assets/accueil.js') }}"></script>
-
 {% endblock %} {% block body %}
 <main>
   {% for message in app.flashes('success') %}
@@ -49,7 +48,8 @@
     <div class="card m-2 border border-primary rounded">
       <div class="card-body">
         <p class="card-text">
-          Publié par {{ commentaire.pseudo }} le {{ commentaire.getCreatedAt()|date('d/m/Y H:i') }}
+          Publié par <strong>{{ commentaire.pseudo }}</strong> le
+          {{ commentaire.getCreatedAt()|date('d/m/Y H:i') }}
         </p>
         <div class="afficher-la-note">
           {% for i in range(1, 5) %} {% if i <= commentaire.getNote() %}
@@ -63,7 +63,6 @@
     </div>
     {% endfor %}
   </div>
-
   <div class="row d-flex justify-content-center mt-2">
     <div class="row d-flex justify-content-center">
       <a

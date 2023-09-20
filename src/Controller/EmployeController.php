@@ -40,11 +40,11 @@ public function newEmploye(Request $request): Response
 {
     $employe = new Employe();
     $form = $this->createForm(EmployeType::class, $employe);
-
+    
     $form->handleRequest($request);
+    $horaires = $this->horaireGarageRepository->findAll();
 
     if ($form->isSubmitted() && $form->isValid()) {
-        // Hachez le mot de passe avec UserPasswordHasherInterface
         $hashedPassword = $this->passwordHasher->hashPassword($employe, $employe->getPassword());
         $employe->setPassword($hashedPassword);
 
@@ -58,6 +58,8 @@ public function newEmploye(Request $request): Response
     return $this->render('security/newEmploye.html.twig', [
         'employe' => $employe,
         'form' => $form->createView(),
+        'horaires' => $horaires,
+
     ]);
 }
 
@@ -66,6 +68,7 @@ public function editEmploye(Request $request, Employe $employe): Response
     $form = $this->createForm(EmployeType::class, $employe);
 
     $form->handleRequest($request);
+    $horaires = $this->horaireGarageRepository->findAll();
 
     if ($form->isSubmitted() && $form->isValid()) {
         // Hachez le mot de passe avec UserPasswordHasherInterface
@@ -82,6 +85,7 @@ public function editEmploye(Request $request, Employe $employe): Response
     return $this->render('security/editEmploye.html.twig', [
         'employe' => $employe,
         'form' => $form->createView(),
+        'horaires' => $horaires,
     ]);
 }
 

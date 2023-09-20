@@ -12,6 +12,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use App\Repository\CommentairesRepository;
 use Symfony\Component\HttpFoundation\Response;
 use App\Repository\HoraireGarageRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class CommentairesController extends AbstractController
 {
@@ -22,42 +23,39 @@ class CommentairesController extends AbstractController
 
     public function __construct(EntityManagerInterface $entityManager, CommentairesRepository $commentairesRepository, HoraireGarageRepository $horaireGarageRepository)
     {
-        $this->entityManager = $entityManager;
-        $this->commentairesRepository = $commentairesRepository;
-        $this->horaireGarageRepository = $horaireGarageRepository;
-
+    $this->entityManager = $entityManager;
+    $this->commentairesRepository = $commentairesRepository;
+    $this->horaireGarageRepository = $horaireGarageRepository;
     }
 
-/**
- * @Route("/commentaires", name="commentaires")
- */
-public function index(PaginatorInterface $paginator, Request $request): Response
+    #[Route("/commentaires", name:"commentaires")]
+public function index(PaginatorInterface $paginator, Request $request, CommentairesRepository $commentairesRepository): Response
 {
-        $horaires = $this->horaireGarageRepository->findAll();
+    $horaires = $this->horaireGarageRepository->findAll();
 
-    $query = $this->commentairesRepository->findAll();
+    $query = $this->commentairesRepository->findBy(['valide' => true]);
     $commentaires = $paginator->paginate(
         $query,
         $request->query->getInt('page', 1),
         12
     );
-    
+
     return $this->render('pages/commentaires.html.twig', [
         'commentaires' => $commentaires,
         'horaires' => $horaires,
     ]);
 }
 
-    /**
-     * @Route("/commentaire/ajouter", name="ajouter_commentaire")
-     */
+    #[Route("/commentaire/ajouter", name:"ajouter_commentaire")]
     public function ajouterCommentaire(Request $request): Response
-{
+    {
     $commentaire = new Commentaires();
     $commentaire->setCreatedAt(new \DateTime());
 
     $commentaireForm = $this->createForm(CommentairesType::class, $commentaire);
     $commentaireForm->handleRequest($request);
+
+    
 
     if ($commentaireForm->isSubmitted() && $commentaireForm->isValid()) {
 
@@ -71,4 +69,29 @@ public function index(PaginatorInterface $paginator, Request $request): Response
         'commentaireForm' => $commentaireForm->createView(),
     ]);
     }
+#[Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')")]
+#[Route("/valider/commentaire/{id}", name:"validerCommentaire")]
+public function validerCommentaire(Commentaires $commentaire, Request $request): Response
+{
+    if ($request->isMethod('POST') && $this->isCsrfTokenValid("valider" . $commentaire->getId(), $request->get('_token'))) {
+        $commentaire->setValide(true);
+
+        $this->entityManager->flush();
+
+        $this->addFlash('success', 'Le commentaire a été validé avec succès.');
+    }
+    return $this->redirectToRoute('index');
+}
+#[Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')")]
+#[Route('/supprimer/commentaire/{id}', name: 'supprimerCommentaire', methods: ['DELETE'])]
+public function supprimerCommentaire(Commentaires $commentaire, Request $request, EntityManagerInterface $entityManager): Response 
+{ 
+    if ($this->isCsrfTokenValid('supprimer' . $commentaire->getId(), $request->get('_token'))) 
+    { 
+        $entityManager->remove($commentaire); 
+        $entityManager->flush();
+        $this->addFlash("success", "Commentaire supprimé avec succès"); 
+    }
+    return $this->redirectToRoute("index"); 
+}
 }

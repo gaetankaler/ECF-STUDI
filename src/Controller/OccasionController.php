@@ -35,11 +35,9 @@ class OccasionController extends AbstractController
 
     }
 
-    /**
-     * @Route("/occasion")
-     */
-public function index(PaginatorInterface $paginator, Request $request, HoraireGarageRepository $horaireGarageRepository): Response
-{
+    #[Route("/occasion")]
+    public function index(PaginatorInterface $paginator, Request $request, HoraireGarageRepository $horaireGarageRepository): Response
+    {
         $horaires = $this->horaireGarageRepository->findAll();
 
     $recherche = new RechercheVoiture();
@@ -72,6 +70,8 @@ public function index(PaginatorInterface $paginator, Request $request, HoraireGa
      */
     public function show(Voiture $voiture, string $slug): Response
     {
+        $horaires = $this->horaireGarageRepository->findAll();
+
         if ($voiture->getSlug() !==$slug) {
             return $this->redirectToRoute("voiture.show", [
                 "id" => $voiture->getId(),
@@ -91,6 +91,7 @@ public function index(PaginatorInterface $paginator, Request $request, HoraireGa
     public function details(int $id, Request $request, ContactNotification $notification): Response
 {
     $voiture = $this->entityManager->getRepository(Voiture::class)->find($id);
+    $horaires = $this->horaireGarageRepository->findAll();
 
     if (!$voiture) {
         throw new NotFoundHttpException('Voiture non trouvée.');
@@ -112,6 +113,7 @@ public function index(PaginatorInterface $paginator, Request $request, HoraireGa
     return $this->render("pages/details.html.twig", [
         'voiture' => $voiture,
         "current_menu" => "voitures",
+        'horaires' => $horaires,
         'form' => $form->createView()
     ]);
     }

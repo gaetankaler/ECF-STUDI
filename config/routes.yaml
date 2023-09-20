@@ -72,3 +72,17 @@ supprimerHoraire:
 admin_horaires:
   path: "/admin/horaires"
   controller: 'App\Controller\Admin\AdminHoraireController::index'
+
+validerCommentaire:
+  path: "/valider/commentaire/{id}"
+  controller: 'App\Controller\CommentairesController::validerCommentaire'
+  methods: ["POST"]
+
+supprimerCommentaire:
+  path: "/supprimer/commentaire/{id}"
+  controller: 'App\Controller\CommentairesController::supprimerCommentaire'
+  methods: ["DELETE"]
+
+admin_voitures_index:
+  path: /admin/voitures
+  controller: App\Controller\Admin\VoituresController::index
