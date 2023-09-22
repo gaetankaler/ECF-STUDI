@@ -30,8 +30,8 @@ Le site web est un outil de gestion complet pour un garage automobile, offrant d
   - Dépendance:
       `composer install`
   - MySQL connexion:
-      utilisateur  : root
-      mot de passe : root
+      utilisateur  : `root`
+      mot de passe : `root`
   - Affichage du site sur "http://localhost:8000/" :
       `symfony server-start`
       `npm run dev-server`
