@@ -34,18 +34,25 @@ Le site web est un outil de gestion complet pour un garage automobile, offrant d
 - Cloner le repository:
   
 `git clone [repository URL]`
+
 - Dépendance:
   
 `composer install`
+
 - MySQL connexion:
   
 utilisateur  : `root`
+
 mot de passe : `root`
+
 - Affichage du site sur "http://localhost:8000/" :
   
 `symfony server-start`
+
 `npm run dev-server`
+
 - Connexion admin
   
 nom : `admin`
+
 mot de passe : `pass_1234`
