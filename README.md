@@ -24,35 +24,35 @@ Le site web est un outil de gestion complet pour un garage automobile, offrant d
 
 ## **Requis** 
 
-- symfony 5.4 ou plus
-- php 8.0 ou plus
-- composer
-- MySQL 8.0
+  - symfony 5.4 ou plus
+  - php 8.0 ou plus
+  - composer
+  - MySQL 8.0
 
 ## **Installation**
 
 - Cloner le repository:
   
-`git clone [repository URL]`
+  `git clone [repository URL]`
 
 - Dépendance:
   
-`composer install`
+  `composer install`
 
 - MySQL connexion:
   
-utilisateur  : `root`
+  utilisateur  : `root`
 
-mot de passe : `root`
+  mot de passe : `root`
 
 - Affichage du site sur "http://localhost:8000/" :
   
-`symfony server-start`
+  `symfony server-start`
 
-`npm run dev-server`
+  `npm run dev-server`
 
 - Connexion admin
   
-nom : `admin`
+  nom : `admin`
 
-mot de passe : `pass_1234`
+  mot de passe : `pass_1234`
