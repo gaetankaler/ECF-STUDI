@@ -18,13 +18,13 @@ Le site dispose également d'un système de commentaires pour les annonces de vo
 
 Le site web est un outil de gestion complet pour un garage automobile, offrant des fonctionnalités de gestion des voitures, des employés, des horaires et des commentaires, tout en distinguant les rôles et les autorisations entre administrateurs et employés.
 
-##**Requis** 
+## **Requis** 
   - symfony 5.4 ou plus
   - php 8.0 ou plus
   - composer
   - MySQL 8.0
 
-##**Installation**
+## **Installation**
   - Cloner le repository:
       `git clone [repository URL]`
   - Dépendance:
@@ -32,6 +32,6 @@ Le site web est un outil de gestion complet pour un garage automobile, offrant d
   - MySQL connexion:
       utilisateur  : root
       mot de passe : root
-  - Affichage du site sur "http://localhost:8000/"
+  - Affichage du site sur "http://localhost:8000/" :
       `symfony server-start`
       `npm run dev-server`
