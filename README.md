@@ -28,6 +28,8 @@ Le site web est un outil de gestion complet pour un garage automobile, offrant d
   - php 8.0 ou plus
   - composer
   - MySQL 8.0
+  - Node.js
+  - symfony encore
 
 ## **Installation**
 
