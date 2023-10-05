@@ -9,9 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 
 #[ORM\Entity(repositoryClass:EmployeRepository::class)]
-
-
-class Employe implements UserInterface, PasswordAuthenticatedUserInterface
+class Employe implements UserInterface, PasswordAuthenticatedUserInterface, \Serializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -32,7 +30,7 @@ class Employe implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->date_enregistrement = new \DateTime();
-        $this->roles = ['ROLE_USER'];
+        $this->roles = ['ROLE_EMPLOYE'];
     }
 
     public function getId(): ?int
@@ -83,7 +81,7 @@ class Employe implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getRoles(): array
     {
-        return ["ROLE_USER"];
+        return ["ROLE_EMPLOYE"];
         return $this->roles;
 
     }
@@ -101,5 +99,22 @@ class Employe implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function eraseCredentials(): void
     {
+    }
+        public function serialize()
+    {
+        return serialize([
+            $this->id,
+            $this->email,
+            $this->password
+        ]);
+    }
+
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->email,
+            $this->password
+        ) = unserialize($serialized, ["allowed_classes" => false]);
     }
 }

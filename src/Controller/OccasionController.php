@@ -89,7 +89,7 @@ class OccasionController extends AbstractController
      * @Route("/detail/{id}", name="detail")
      */
     public function details(int $id, Request $request, ContactNotification $notification): Response
-{
+    {
     $voiture = $this->entityManager->getRepository(Voiture::class)->find($id);
     $horaires = $this->horaireGarageRepository->findAll();
 

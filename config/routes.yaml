@@ -19,7 +19,7 @@ detail:
   controller: 'App\Controller\OccasionController::details'
 
 index:
-  path: "/admin"
+  path: "/index"
   controller: 'App\Controller\Admin\AdminVoitureController::index'
 
 edit:

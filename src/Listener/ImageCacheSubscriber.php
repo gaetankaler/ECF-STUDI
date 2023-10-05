@@ -89,9 +89,9 @@ if (isset($changeSet['imageCarousel3'])) {
     if ($newImageCarousel3 instanceof UploadedFile && $oldImageCarousel3 !== $newImageCarousel3) {
         $this->cacheManager->remove($this->uploaderHelper->asset($entity, "imageCarousel3"));
     }
-}
-
     }
+
+  }
     
   public function setCacheManager(CacheManager $cacheManager)
   {

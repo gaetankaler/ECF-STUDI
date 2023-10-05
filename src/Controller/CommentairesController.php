@@ -69,7 +69,7 @@ public function index(PaginatorInterface $paginator, Request $request, Commentai
         'commentaireForm' => $commentaireForm->createView(),
     ]);
     }
-#[Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')")]
+#[Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_EMPLOYE')")]
 #[Route("/valider/commentaire/{id}", name:"validerCommentaire")]
 public function validerCommentaire(Commentaires $commentaire, Request $request): Response
 {
@@ -82,7 +82,7 @@ public function validerCommentaire(Commentaires $commentaire, Request $request):
     }
     return $this->redirectToRoute('index');
 }
-#[Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_USER')")]
+#[Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_EMPLOYE')")]
 #[Route('/supprimer/commentaire/{id}', name: 'supprimerCommentaire', methods: ['DELETE'])]
 public function supprimerCommentaire(Commentaires $commentaire, Request $request, EntityManagerInterface $entityManager): Response 
 { 

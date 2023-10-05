@@ -25,7 +25,7 @@ class EmployeFixture extends Fixture
             $password = $this->hasher->hashPassword($employe, 'pass_1234');
             $employe->setPassword($password);
 
-            $employe->setRoles(['ROLE_USER']);
+            $employe->setRoles(['ROLE_EMPLOYE']);
 
 
             $manager->persist($employe);

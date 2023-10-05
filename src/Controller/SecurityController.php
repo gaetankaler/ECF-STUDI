@@ -2,15 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Employe;
-use App\Form\EmployeType;
 use App\Repository\EmployeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 use App\Repository\HoraireGarageRepository;
@@ -18,7 +14,6 @@ use App\Repository\HoraireGarageRepository;
 
 class SecurityController extends AbstractController
 {
-    private EntityManagerInterface $em;
     private Environment $twig;
     private EmployeRepository $repository;
     private $entityManager;
@@ -26,7 +21,8 @@ class SecurityController extends AbstractController
 
 
 
-    public function __construct(EmployeRepository $repository, Environment $twig, EntityManagerInterface $entityManager, HoraireGarageRepository $horaireGarageRepository)
+    public function __construct(EmployeRepository $repository, Environment $twig, EntityManagerInterface $entityManager, 
+    HoraireGarageRepository $horaireGarageRepository)
     {
         $this->twig = $twig;
         $this->entityManager = $entityManager; 
@@ -61,7 +57,6 @@ class SecurityController extends AbstractController
         "last_username" =>$lastUsername,
         "error" => $error,
         'horaires' => $horaires,
-
     ]);
     }
 }

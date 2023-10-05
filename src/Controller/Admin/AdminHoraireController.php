@@ -32,32 +32,22 @@ class AdminHoraireController extends AbstractController
         $this->em = $em;
         $this->commentairesRepository = $commentairesRepository;
     }
-
-    // public function index(): Response
-    // {
-    //     $employes = $this->em->getRepository(Employe::class)->findAll();
-    //     $voitures = $this->em->getRepository(Voiture::class)->findAll();
-    //     $horaires = $this->horaireGarageRepository->findAll();
-
-    //     $this->twig->addGlobal('horaires', $horaires);
-
-    //     return $this->render('admin/voitures/index.html.twig', [
-    //         'voitures' => $voitures,
-    //         'employes' => $employes,
-    //     ]);
-    // }
+    
     #[Route('/admin/voitures', name: 'admin.voitures.index')]
-    public function index(): Response
+    public function index(CommentairesRepository $commentairesRepository): Response
     {
     $employes = $this->em->getRepository(Employe::class)->findAll();
     $voitures = $this->em->getRepository(Voiture::class)->findAll();
     $horaires = $this->horaireGarageRepository->findAll();
+    $commentairesEnAttente = $commentairesRepository->findBy(['valide' => false], ['created_at' => 'DESC']);
 
     $this->twig->addGlobal('horaires', $horaires);
 
     return $this->render('admin\voitures\index.html.twig', [
         'voitures' => $voitures,
         'employes' => $employes,
+        'commentairesEnAttente' => $commentairesEnAttente,
+
     ]);
 }
 

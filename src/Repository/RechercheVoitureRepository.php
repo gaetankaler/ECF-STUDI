@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\RechercheVoiture;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -20,7 +21,6 @@ class RechercheVoitureRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, RechercheVoiture::class);
     }
-
 //    /**
 //     * @return RechercheVoiture[] Returns an array of RechercheVoiture objects
 //     */

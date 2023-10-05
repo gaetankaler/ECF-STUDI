@@ -12,9 +12,11 @@ use App\Repository\VoitureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Security;
 use Twig\Environment;
 
 class AdminVoitureController extends AbstractController
@@ -46,6 +48,8 @@ class AdminVoitureController extends AbstractController
 #[Route('/admin/voitures', name: 'admin.voitures.index')]
 public function index(CommentairesRepository $commentairesRepository): Response
 {
+    
+    
     $employes = $this->em->getRepository(Employe::class)->findAll();
     $voitures = $this->em->getRepository(Voiture::class)->findAll();
     $horaires = $this->horaireGarageRepository->findAll();

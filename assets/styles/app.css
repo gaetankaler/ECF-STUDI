@@ -13,3 +13,194 @@
 .comment-reply-form {
   display: none;
 }
+* {
+  font-family: "Roboto Mono", monospace, "Montserrat", sans-serif;
+  box-sizing: inherit;
+}
+html {
+  width: 100%;
+  font-size: 9px;
+  padding: 0;
+  margin: 0;
+}
+.container-head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}
+.img-logo {
+  width: 30%;
+}
+.navigation {
+  padding: 10px;
+}
+.nav {
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.barre {
+  border-top: 1px solid black;
+  margin: 10px 10px 0 10px;
+}
+footer {
+  display: flex;
+  justify-content: space-around;
+  font-size: 6px;
+  text-align: center;
+}
+.title-adress {
+  margin-bottom: 10px;
+}
+.horaires {
+  font-size: 6px;
+}
+
+.social {
+  font-size: 16px;
+  margin-top: 15px;
+  text-decoration: none;
+}
+.fa {
+  text-decoration: none;
+}
+.fa-instagram {
+  color: #e4405f;
+}
+.fa-whatsapp {
+  color: #25d366;
+}
+.fa-twitter {
+  color: #1da1f2;
+}
+.fa-facebook-f {
+  color: #1877f2;
+}
+.adresse-maps,
+.horaires-footer,
+.social-logo {
+  flex: 1;
+  padding: 10px 10px 0px 10px;
+}
+.copyright {
+  text-align: center;
+  font-size: 6px;
+  border: 1px solid black;
+}
+@media screen and (min-width: 321px) {
+  html {
+    font-size: 11px;
+  }
+  .adresse,
+  .horaires {
+    font-size: 7px;
+  }
+  .itineraire {
+    font-size: 7px;
+  }
+  .social {
+    font-size: 20px;
+  }
+  .copyright {
+    font-size: 7px;
+  }
+}
+@media screen and (min-width: 321.1px) {
+  html {
+    font-size: 9px;
+  }
+  .social {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 342px) {
+  html {
+    font-size: 10px;
+  }
+  .social {
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 425px) {
+  html {
+    font-size: 12px;
+  }
+  .adresse,
+  .horaires {
+    font-size: 10px;
+  }
+  .itineraire {
+    font-size: 10px;
+  }
+  .social {
+    font-size: 24px;
+  }
+  .copyright {
+    font-size: 8px;
+  }
+}
+@media screen and (min-width: 768px) {
+  html {
+    font-size: 12px;
+  }
+  .social {
+    font-size: 34px;
+  }
+  .copyright {
+    font-size: 10px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  html {
+    font-size: 16px;
+  }
+  .adresse,
+  .horaires {
+    font-size: 12px;
+  }
+  .itineraire {
+    font-size: 12px;
+  }
+  .social {
+    font-size: 36px;
+  }
+  .copyright {
+    font-size: 12px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  html {
+    font-size: 16px;
+  }
+  .adresse,
+  .horaires {
+    font-size: 16px;
+  }
+  .itineraire {
+    font-size: 16px;
+  }
+  .social {
+    font-size: 40px;
+  }
+  .copyright {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 1441px) {
+  html {
+    font-size: 16px;
+  }
+  .adresse,
+  .horaires {
+    font-size: 16px;
+  }
+  .itineraire {
+    font-size: 16px;
+  }
+  .copyright {
+    font-size: 16px;
+  }
+}

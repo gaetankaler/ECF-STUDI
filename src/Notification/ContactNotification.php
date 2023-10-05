@@ -10,9 +10,6 @@ use Symfony\Component\Mailer\MailerInterface;
 
 class ContactNotification
 {
-
-
-
     private MailerInterface $mailer;
     private Environment $renderer;
 

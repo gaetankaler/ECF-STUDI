@@ -1,17 +1,13 @@
-/* Styles globaux */
 * {
-  font-family: "Roboto Mono", monospace;
+  font-family: "Roboto Mono", monospace, "Montserrat", sans-serif;
   box-sizing: inherit;
 }
-/* Styles pour le corps de la page */
 html {
   width: 100%;
-  height: 100vh;
   font-size: 9px;
   padding: 0;
   margin: 0;
 }
-/* Styles pour l'en-tête */
 .container-head {
   display: flex;
   flex-direction: row;
@@ -22,7 +18,6 @@ html {
 .img-logo {
   width: 30%;
 }
-/* Styles pour la barre de navigation */
 .navigation {
   padding: 10px;
 }
@@ -36,11 +31,10 @@ html {
   border-top: 1px solid black;
   margin: 10px 10px 0 10px;
 }
-/* Styles pour les horaires d'ouverture et l'adresse */
 footer {
   display: flex;
   justify-content: space-around;
-  font-size: 7px;
+  font-size: 6px;
   text-align: center;
 }
 .title-adress {
@@ -50,7 +44,6 @@ footer {
   font-size: 6px;
 }
 
-/* Styles pour les icônes sociales */
 .social {
   font-size: 16px;
   margin-top: 15px;
@@ -71,7 +64,6 @@ footer {
 .fa-facebook-f {
   color: #1877f2;
 }
-/* Styles pour les sections du footer */
 .adresse-maps,
 .horaires-footer,
 .social-logo {
@@ -83,7 +75,7 @@ footer {
   font-size: 6px;
   border: 1px solid black;
 }
-*/ @media screen and (min-width: 321px) {
+@media screen and (min-width: 321px) {
   html {
     font-size: 11px;
   }

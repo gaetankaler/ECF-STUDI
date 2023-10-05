@@ -100,7 +100,7 @@ class Voiture
 
     #[ORM\Column]
     #[Assert\Range(min:1, max:9999999)]
-    private ?int $kilometrage;
+    private ?int $kilometre;
 
     #[ORM\Column]
     #[Assert\Range(min:50, max:1000)]
@@ -185,14 +185,14 @@ class Voiture
         return $this;
     }
 
-    public function getKilometrage(): ?int
+    public function getKilometre(): ?int
     {
-        return $this->kilometrage;
+        return $this->kilometre;
     }
 
-    public function setKilometrage(int $kilometrage): static
+    public function setKilometre(int $kilometre): static
     {
-        $this->kilometrage = $kilometrage;
+        $this->kilometre = $kilometre;
 
         return $this;
     }

@@ -8,10 +8,10 @@
 />
 {% endblock %} {% block body %}
 <h2 class="mb-4 text-center text-decoration-underline">Véhicules d'occasion</h2>
-<div class="jumbotron" style="background-color: lightgrey; height: 150px">
+<div class="jumbotron" style="background-color: #d3d3d3; height: 150px">
   <h5 class="text-center pt-2">Filtres</h5>
   <div class="container">
-    {{ form_start(form) }}
+    {{ form_start(form, {'attr': {'id': 'search-form'}}) }}
     <div class="form-row d-flex flex-row d-flex justify-content-around pt-3">
       <div class="col-md-3">
         {{ form_row(form.anneeMax) }}
@@ -24,7 +24,7 @@
       </div>
       <div class="col-md-2">
         <div class="form-group">
-          <button class="btn btn-primary">Rechercher</button>
+          <button type="button" class="btn btn-primary" id="filtres">Filtrer</button>
         </div>
       </div>
     </div>
@@ -32,11 +32,67 @@
   </div>
 </div>
 <div class="container mt-4">
-  <div class="row">
+  <div class="row" id="resultats-voitures">
     {% for voiture in voitures %}
     <div class="col-md-3">{% include "pages/_voiture-occasion.html.twig" %}</div>
     {% endfor %}
   </div>
   <div class="pagination">{{ knp_pagination_render(voitures) }}</div>
 </div>
+<script>
+  $(document).ready(function() {
+    const searchForm = $("#search-form");
+
+    // Fonction pour mettre à jour les valeurs des filtres à partir du localStorage
+    function updateFiltersFromLocalStorage() {
+      ["anneeMax", "prixMax", "kilometreMax"].forEach(function(field) {
+        $("#" + field).val(localStorage.getItem(field));
+      });
+    }
+
+    // Fonction pour lancer la recherche
+    async function performSearch() {
+      const data = {
+        anneeMax: $("#anneeMax").val(),
+        prixMax: $("#prixMax").val(),
+        kilometreMax: $("#kilometreMax").val()
+      };
+
+      try {
+        const response = await $.get('{{ path("occasion") }}', data);
+        $("#resultats-voitures").html($(response).find("#resultats-voitures").html());
+      } catch (error) {
+        console.log("Erreur lors de la requête AJAX : " + error);
+      }
+    }
+
+    // Mettre à jour les filtres à partir du localStorage lors du chargement de la page
+    updateFiltersFromLocalStorage();
+
+    // Effacer les paramètres de l'URL lors du chargement de la page
+    if (window.location.search !== '') {
+      history.pushState({}, '', '{{ path("occasion") }}');
+    }
+
+    // Lancer la recherche lorsque les filtres sont modifiés
+    $("#anneeMax, #prixMax, #kilometreMax").on("change", performSearch);
+
+    // Gérer la réinitialisation des filtres lorsque la page est actualisée
+    window.addEventListener('beforeunload', function() {
+      ["anneeMax", "prixMax", "kilometreMax"].forEach(function(field) {
+        localStorage.removeItem(field);
+      });
+    });
+
+    // Actualiser la page lors du chargement pour afficher les résultats de la recherche
+    window.addEventListener('load', function() {
+      ["anneeMax", "prixMax", "kilometreMax"].forEach(function(field) {
+        const value = $("#" + field).val();
+        if (value) {
+          performSearch();
+        }
+      });
+    });
+  });
+</script>
 {% endblock %}

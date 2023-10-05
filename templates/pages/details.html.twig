@@ -16,7 +16,7 @@
     {% endfor %} {% if not form.vars.valid %}
     <div class="alert alert-danger">Erreur dans le formulaire</div>
     {% endif %}
-      <div class="col d-flex justify-content-around">
+      <div class="col d-flex justify-content-around align-items-center">
 <div id="carouselExampleIndicators" class="carousel slide">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -26,32 +26,36 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active" style="margin: 0.5rem 2rem 0.5rem 2rem;">
-         {% if voiture.filename %}
-         <img src="{{ vich_uploader_asset(voiture, "imageFile") }}" style="width: 600px;height: 400px;padding: 30px;" alt="imageFile">
-         {% else %}
-         <img src="{{ "/image/photo.jpg" }}" style="width: 600px;height: 400px;padding: 30px;"alt="imagefile">
-   {% endif %}
+      {% if voiture.filename %}
+      <img src="{{ vich_uploader_asset(voiture, "imageFile") }}" 
+      style="width: 600px;height: 400px;padding: 30px;" alt="imageFile">
+      {% else %}
+      <img src="{{ "/image/photo.jpg" }}" style="width: 600px;height: 400px;padding: 30px;"alt="imagefile">
+      {% endif %}
     </div>
     <div class="carousel-item" style="margin: 0.5rem 2rem 0.5rem 2rem;"> 
-         {% if voiture.nameImageCarousel1 %}
-         <img src="{{ vich_uploader_asset(voiture, 'imageCarousel1') }}" style="width: 600px;height: 400px;padding: 30px;" alt="imageCarousel1">
-         {% else %}
-         <img src="{{ "/image/photo.jpg" }}" style="width: 600px;height: 400px;padding: 30px;"alt="imageCarousel1">
-   {% endif %}
+      {% if voiture.nameImageCarousel1 %}
+      <img src="{{ vich_uploader_asset(voiture, 'imageCarousel1') }}" 
+      style="width: 600px;height: 400px;padding: 30px;" alt="imageCarousel1">
+      {% else %}
+      <img src="{{ "/image/photo.jpg" }}" style="width: 600px;height: 400px;padding: 30px;"alt="imageCarousel1">
+    {% endif %}
     </div>
     <div class="carousel-item"style="margin: 0.5rem 2rem 0.5rem 2rem;">
-         {% if voiture.nameImageCarousel2 %}
-         <img src="{{ vich_uploader_asset(voiture, 'imageCarousel2') }}" style="width: 600px;height: 400px;padding: 30px;" alt="imageCarousel2">
-         {% else %}
-         <img src="{{ "/image/photo.jpg" }}" style="width: 600px;height: 400px;padding: 30px;"alt="imageCarousel2">
-   {% endif %}
+      {% if voiture.nameImageCarousel2 %}
+      <img src="{{ vich_uploader_asset(voiture, 'imageCarousel2') }}" 
+      style="width: 600px;height: 400px;padding: 30px;" alt="imageCarousel2">
+      {% else %}
+      <img src="{{ "/image/photo.jpg" }}" style="width: 600px;height: 400px;padding: 30px;"alt="imageCarousel2">
+    {% endif %}
     </div>
     <div class="carousel-item"style="margin: 0.5rem 2rem 0.5rem 2rem;">
-         {% if voiture.nameImageCarousel3 %}
-         <img src="{{ vich_uploader_asset(voiture, 'imageCarousel3') }}" style="width: 600px;height: 400px;padding: 30px;" alt="imageCarousel3">
-         {% else %}
-         <img src="{{ "/image/photo.jpg" }}" style="width: 600px;height: 400px;padding: 30px;" alt="imageCarousel3">
-   {% endif %}
+      {% if voiture.nameImageCarousel3 %}
+      <img src="{{ vich_uploader_asset(voiture, 'imageCarousel3') }}" 
+      style="width: 600px;height: 400px;padding: 30px;" alt="imageCarousel3">
+      {% else %}
+      <img src="{{ "/image/photo.jpg" }}" style="width: 600px;height: 400px;padding: 30px;" alt="imageCarousel3">
+    {% endif %}
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -63,12 +67,11 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-
           <div class="col-md-4">
             <h1 class="mt-4 text-uppercase">{{ voiture.title }}</h1>
             <div style="font-size: 1.5rem">Année : {{ voiture.annee }}</div>
-            <div style="font-size: 1.5rem">{{ voiture.kilometrage }} km</div>
-            <div class="text-primary mb-2 mt-2" style="font-size: 3rem; font-weight: bold">
+            <div style="font-size: 1.5rem">{{ voiture.kilometre }} km</div>
+            <div class="text-primary mb-2 mt-2" style="font-size: 2.3rem; font-weight: bold">
               Prix : {{ voiture.formatPrix }}
             </div>
             <a
@@ -111,7 +114,7 @@
             </tr>
             <tr>
               <td>Kilométrage</td>
-              <td>{{ voiture.kilometrage }} km</td>
+              <td>{{ voiture.kilometre }} km</td>
             </tr>
             <tr>
               <td>Chevaux fiscaux</td>
@@ -143,4 +146,4 @@
     </div>
   </div>
 </div>
-    {% endblock %}
+{% endblock %}

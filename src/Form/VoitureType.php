@@ -21,7 +21,7 @@ class VoitureType extends AbstractType
             ->add('title', null, ["label" => "Modèle"])
             ->add('description', null, ["label" => "Déscription"])
             ->add('annee', null, ["label" => "Année"])
-            ->add('kilometrage', null, ["label" => "Kilomètres"])
+            ->add('kilometre', null, ["label" => "Kilomètres"])
             ->add('chevaux', null, ["label" => "Chevaux"])
             ->add('prix')
             ->add("imageFile", FileType::class, [

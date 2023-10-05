@@ -35,7 +35,6 @@ class EmployeController extends AbstractController
         $this->horaireGarageRepository = $horaireGarageRepository;
 
     }
-
 public function newEmploye(Request $request): Response
 {
     $employe = new Employe();
@@ -71,7 +70,6 @@ public function editEmploye(Request $request, Employe $employe): Response
     $horaires = $this->horaireGarageRepository->findAll();
 
     if ($form->isSubmitted() && $form->isValid()) {
-        // Hachez le mot de passe avec UserPasswordHasherInterface
         $hashedPassword = $this->passwordHasher->hashPassword($employe, $employe->getPassword());
         $employe->setPassword($hashedPassword);
 
@@ -98,13 +96,13 @@ public function editEmploye(Request $request, Employe $employe): Response
     { 
     if ($this->isCsrfTokenValid('supprimer' . $employe->getId(), $request->get('_token'))) 
     { 
-      $entityManager->remove($employe); 
-      $entityManager->flush();
-      $this->addFlash("success", "Employé supprimé avec succès"); 
+        $entityManager->remove($employe); 
+        $entityManager->flush();
+        $this->addFlash("success", "Employé supprimé avec succès"); 
     }
-       return $this->redirectToRoute("index"); 
-      } 
-      $this->addFlash("error", "Vousn'êtes pas autorisé à supprimer un employé."); 
-      return $this->redirectToRoute('index'); 
+    return $this->redirectToRoute("index"); 
+        } 
+        $this->addFlash("error", "Vous n'êtes pas autorisé à supprimer un employé."); 
+        return $this->redirectToRoute('index'); 
     } 
 }

@@ -17,9 +17,6 @@ class Commentaires
     #[ORM\Column(type: Types::TEXT)]
     private ?string $contenue = null;
 
-    #[ORM\Column]
-    private ?bool $activer = false;
-
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
@@ -58,19 +55,6 @@ class Commentaires
 
         return $this;
     }
-
-    public function isActiver(): ?bool
-    {
-        return $this->activer;
-    }
-
-    public function setActiver(bool $activer): static
-    {
-        $this->activer = $activer;
-
-        return $this;
-    }
-
     public function getEmail(): ?string
     {
         return $this->email;
