@@ -16,10 +16,10 @@ class Employe implements UserInterface, PasswordAuthenticatedUserInterface, \Ser
     #[ORM\Column(type: "integer")]
     private int $id;
 
-    #[ORM\Column(type: "string", length: 255, unique: true)]
+    #[ORM\Column(type: "string", length: 60, unique: true)]
     private string $email;
 
-    #[ORM\Column(type: "string", length: 255)]
+    #[ORM\Column(type: "string", length: 100)]
     private string $password;
 
     #[ORM\Column(type: "datetime")]
